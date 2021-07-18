@@ -59,9 +59,40 @@ body {
   display: flex;
   justify-content: space-between;
   color: var(--dk-blue);
+  margin-bottom: 24px;
 }
 
 #rm-list {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+.rm-list-item {
+  display: flex;
+  align-items: center;
+  color: var(--grey);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+
+#planned-dot {
+  background-color: var(--orange);
+}
+
+#in-progress-dot {
+  background-color: var(--purple);
+}
+
+#live-dot {
+  background-color: var(--sky-blue);
+}
+
+.rm-num {
+  margin-left: auto;
 }

@@ -201,11 +201,6 @@
 }
 
 .tag-active {
-  border: none;
-  outline: none;
-  width: 48px;
-  height: 30px;
-  border-radius: 10px;
   background-color: var(--sea-blue);
   color: var(--white);
 }
@@ -236,9 +231,4 @@
 
 .dropdown-text-active {
   color: var(--purple);
-}
-
-.rm-list-item {
-  display: flex;
-  justify-content: space-between;
 }

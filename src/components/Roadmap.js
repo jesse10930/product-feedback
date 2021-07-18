@@ -1,6 +1,31 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import DataContext from '../context/data/dataContext';
 
 const Roadmap = () => {
+  // Declare and destructure context
+  const dataContext = useContext(DataContext);
+  const { requests, getData } = dataContext;
+
+  // Effect to get data on initial load
+  useEffect(() => {
+    getData();
+    // eslint-disable-next-line
+  }, []);
+
+  // Get counts for statuses
+  let planCount = 0,
+    inProgCount = 0,
+    liveCount = 0;
+  for (let i = 0; i < requests.length; i++) {
+    if (requests[i]['status'] === 'live') {
+      liveCount += 1;
+    } else if (requests[i]['status'] === 'planned') {
+      planCount += 1;
+    } else if (requests[i]['status'] === 'in-progress') {
+      inProgCount += 1;
+    }
+  }
+
   return (
     <div id='roadmap-container'>
       <div id='rm-title'>
@@ -9,24 +34,21 @@ const Roadmap = () => {
       </div>
       <div id='rm-list'>
         <div className='rm-list-item'>
-          <div id='suggestion-dot' className='dot'></div>
-          <div className='body1'>Suggestion</div>
-          <div className='body1'>6</div>
-        </div>
-        <div className='rm-list-item'>
           <div id='planned-dot' className='dot'></div>
-          <div className='body1'>Planned</div>
-          <div className='body1'>2</div>
+          <p className='body1'>Planned</p>
+          <h3 className='rm-num header3'>{planCount}</h3>
         </div>
         <div className='rm-list-item'>
           <div id='in-progress-dot' className='dot'></div>
-          <div className='body1'>In-Progress</div>
-          <div className='body1'>3</div>
+          <p className='body1'>In-Progress</p>
+          <h3 className='rm-num header3'>{inProgCount}</h3>
         </div>
         <div className='rm-list-item'>
           <div id='live-dot' className='dot'></div>
-          <div className='body1'>Live</div>
-          <div className='body1'>1</div>
+          <p className='body1'>Live</p>
+          <h3 id='test' className='rm-num header3'>
+            {liveCount}
+          </h3>
         </div>
       </div>
     </div>
