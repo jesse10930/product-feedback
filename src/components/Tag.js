@@ -1,30 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-const Tag = ({ labelName }) => {
-  // Component leve state
-  const [active, setActive] = useState(false);
-
-  // Effect to set initial active state
-  useEffect(() => {
-    if (labelName === 'All') {
-      setActive(true);
-    }
-    // eslint-disable-next-line
-  }, []);
-
-  // Set active state on click
-  const onTagClick = () => {
-    let newActiveState = !active;
-    setActive(newActiveState);
-  };
-
+const Tag = ({ labelName, activeProp, onTagClick }) => {
   return (
-    <div
-      className={active ? 'tag-active tag header4' : 'tag header4'}
+    <button
+      className={activeProp ? 'tag-active tag header4' : 'tag header4'}
+      value={labelName}
       onClick={onTagClick}
     >
       {labelName}
-    </div>
+    </button>
   );
 };
 
