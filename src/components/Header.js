@@ -2,13 +2,12 @@ import React, { useState, useContext } from 'react';
 import DataContext from '../context/data/dataContext';
 
 const Header = () => {
-  // Declare component level state
-  const [hide, setHide] = useState(true);
-  const [curDisplay, setCurDisplay] = useState('Most Upvotes');
-
   // Declare and destructure context
   const dataContext = useContext(DataContext);
-  const { requests } = dataContext;
+  const { requests, sortByFilter, updateSortByFilter } = dataContext;
+
+  // Declare component level state
+  const [hide, setHide] = useState(true);
 
   // Get suggestion count
   let suggCount = 0;
@@ -31,12 +30,8 @@ const Header = () => {
       : e.target.parentNode.value;
     let newHide = !hide;
 
-    setCurDisplay(newCurDisplay);
+    updateSortByFilter(newCurDisplay);
     setHide(newHide);
-
-    e.target.lastElementChild
-      ? e.target.lastElementChild.classList.toggle('invisible')
-      : e.target.nextSibling.classList.toggle('invisible');
   };
 
   return (
@@ -52,7 +47,7 @@ const Header = () => {
       <div id='sort-btn-n-dropdown'>
         <button className='sort-by' onClick={onSortByClick}>
           <p className='body3'>Sort by:</p>
-          <h4 className='header4'>{curDisplay}</h4>
+          <h4 className='header4'>{sortByFilter}</h4>
           {hide ? (
             <svg width='10' height='7' xmlns='http://www.w3.org/2000/svg'>
               <path
@@ -85,7 +80,7 @@ const Header = () => {
           >
             <p className='body1'>Most Upvotes</p>
             <svg
-              className={curDisplay === 'Most Upvotes' ? '' : 'invisible'}
+              className={sortByFilter === 'Most Upvotes' ? '' : 'invisible'}
               xmlns='http://www.w3.org/2000/svg'
               width='13'
               height='11'
@@ -105,7 +100,7 @@ const Header = () => {
           >
             <p className='body1'>Least Upvotes</p>
             <svg
-              className={curDisplay === 'Least Upvotes' ? '' : 'invisible'}
+              className={sortByFilter === 'Least Upvotes' ? '' : 'invisible'}
               xmlns='http://www.w3.org/2000/svg'
               width='13'
               height='11'
@@ -125,7 +120,7 @@ const Header = () => {
           >
             <p className='body1'>Most Comments</p>
             <svg
-              className={curDisplay === 'Most Comments' ? '' : 'invisible'}
+              className={sortByFilter === 'Most Comments' ? '' : 'invisible'}
               xmlns='http://www.w3.org/2000/svg'
               width='13'
               height='11'
@@ -145,7 +140,7 @@ const Header = () => {
           >
             <p className='body1'>Least Comments</p>
             <svg
-              className={curDisplay === 'Least Comments' ? '' : 'invisible'}
+              className={sortByFilter === 'Least Comments' ? '' : 'invisible'}
               xmlns='http://www.w3.org/2000/svg'
               width='13'
               height='11'
