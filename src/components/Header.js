@@ -1,7 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import DataContext from '../context/data/dataContext';
 
 const Header = () => {
+  // Declare component level state
+  const [hide, setHide] = useState(true);
+  const [curDisplay, setCurDisplay] = useState('Most Upvotes');
+
   // Declare and destructure context
   const dataContext = useContext(DataContext);
   const { requests } = dataContext;
@@ -14,6 +18,27 @@ const Header = () => {
     }
   }
 
+  // On sort by click
+  const onSortByClick = () => {
+    let newHide = !hide;
+    setHide(newHide);
+  };
+
+  // On sort by option click
+  const onSortByOptionClick = (e) => {
+    let newCurDisplay = e.target.value
+      ? e.target.value
+      : e.target.parentNode.value;
+    let newHide = !hide;
+
+    setCurDisplay(newCurDisplay);
+    setHide(newHide);
+
+    e.target.lastElementChild
+      ? e.target.lastElementChild.classList.toggle('invisible')
+      : e.target.nextSibling.classList.toggle('invisible');
+  };
+
   return (
     <div id='header-container'>
       <img
@@ -25,23 +50,46 @@ const Header = () => {
         {suggCount} Suggestions
       </h3>
       <div id='sort-btn-n-dropdown'>
-        <button className='sort-by'>
+        <button className='sort-by' onClick={onSortByClick}>
           <p className='body3'>Sort by:</p>
-          <h4 className='header4'>Most Upvotes</h4>
-          <svg width='10' height='7' xmlns='http://www.w3.org/2000/svg'>
-            <path
-              d='M1 1l4 4 4-4'
-              stroke='#ffffff'
-              strokeWidth='2'
-              fill='none'
-              fillRule='evenodd'
-            />
-          </svg>
+          <h4 className='header4'>{curDisplay}</h4>
+          {hide ? (
+            <svg width='10' height='7' xmlns='http://www.w3.org/2000/svg'>
+              <path
+                d='M1 1l4 4 4-4'
+                stroke='#ffffff'
+                strokeWidth='2'
+                fill='none'
+                fillRule='evenodd'
+              />
+            </svg>
+          ) : (
+            <svg width='10' height='7' xmlns='http://www.w3.org/2000/svg'>
+              <path
+                d='M1 6l4-4 4 4'
+                stroke='#ffffff'
+                strokeWidth='2'
+                fill='none'
+                fillRule='evenodd'
+              />
+            </svg>
+          )}
         </button>
-        <div style={{ display: 'none' }} className='dropdown-container'>
-          <button className='dropdown-text'>
+        <div
+          className={hide ? 'dropdown-container hide' : 'dropdown-container'}
+        >
+          <button
+            className='dropdown-text'
+            value='Most Upvotes'
+            onClick={onSortByOptionClick}
+          >
             <p className='body1'>Most Upvotes</p>
-            <svg xmlns='http://www.w3.org/2000/svg' width='13' height='11'>
+            <svg
+              className={curDisplay === 'Most Upvotes' ? '' : 'invisible'}
+              xmlns='http://www.w3.org/2000/svg'
+              width='13'
+              height='11'
+            >
               <path
                 fill='none'
                 stroke='#AD1FEA'
@@ -50,10 +98,14 @@ const Header = () => {
               />
             </svg>
           </button>
-          <button className='dropdown-text'>
+          <button
+            className='dropdown-text'
+            value='Least Upvotes'
+            onClick={onSortByOptionClick}
+          >
             <p className='body1'>Least Upvotes</p>
             <svg
-              style={{ visibility: 'hidden' }}
+              className={curDisplay === 'Least Upvotes' ? '' : 'invisible'}
               xmlns='http://www.w3.org/2000/svg'
               width='13'
               height='11'
@@ -66,10 +118,14 @@ const Header = () => {
               />
             </svg>
           </button>
-          <button className='dropdown-text'>
+          <button
+            className='dropdown-text'
+            value='Most Comments'
+            onClick={onSortByOptionClick}
+          >
             <p className='body1'>Most Comments</p>
             <svg
-              style={{ visibility: 'hidden' }}
+              className={curDisplay === 'Most Comments' ? '' : 'invisible'}
               xmlns='http://www.w3.org/2000/svg'
               width='13'
               height='11'
@@ -82,10 +138,14 @@ const Header = () => {
               />
             </svg>
           </button>
-          <button className='dropdown-text'>
+          <button
+            className='dropdown-text'
+            value='Least Comments'
+            onClick={onSortByOptionClick}
+          >
             <p className='body1'>Least Comments</p>
             <svg
-              style={{ visibility: 'hidden' }}
+              className={curDisplay === 'Least Comments' ? '' : 'invisible'}
               xmlns='http://www.w3.org/2000/svg'
               width='13'
               height='11'

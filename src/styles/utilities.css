@@ -214,7 +214,7 @@
 .sort-by {
   border: none;
   outline: none;
-  width: 160px;
+  width: 175px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -321,4 +321,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* Show/hide elements */
+.hide {
+  display: none;
+}
+
+.invisible {
+  visibility: hidden;
 }
