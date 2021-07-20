@@ -1,19 +1,22 @@
 import React from 'react';
-import Sidebar from './components/Sidebar';
+import Home from './components/Pages/Home';
+import RoadmapPage from './components/Pages/RoadmapPage';
 import DataState from './context/data/DataState';
-import SuggestionsContainer from './components/SuggestionsContainer';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 const App = () => {
   return (
-    <main className='main-app'>
-      <DataState>
-        <div id='sidebar-sugg-layout'>
-          <Sidebar />
-          <SuggestionsContainer />
-        </div>
-      </DataState>
-    </main>
+    <Router>
+      <main className='main-app'>
+        <DataState>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/roadmappage' component={RoadmapPage} />
+          </Switch>
+        </DataState>
+      </main>
+    </Router>
   );
 };
 

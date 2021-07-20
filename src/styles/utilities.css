@@ -139,12 +139,11 @@
 .goback-blue {
   border: none;
   outline: none;
-  width: 158px;
-  height: 53px;
   border-radius: 10px;
   background-color: var(--v-dk-blue);
   color: var(--white);
   text-align: center;
+  text-decoration: none;
 }
 
 .goback-blue:hover {
@@ -213,6 +212,26 @@
 .tag-active {
   background-color: var(--sea-blue);
   color: var(--white);
+}
+
+/* roadmap sidebar */
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+
+.planned-dot {
+  background-color: var(--orange);
+}
+
+.in-progress-dot {
+  background-color: var(--purple);
+}
+
+.live-dot {
+  background-color: var(--sky-blue);
 }
 
 /* Sort By Buttons */
@@ -335,4 +354,93 @@
 
 .invisible {
   visibility: hidden;
+}
+
+/* Planned/InProg/Live Cards Container */
+.req-cards-container {
+  display: flex;
+  flex-direction: column;
+  width: 325px;
+}
+
+.req-cards-title {
+  margin: 48px 0 32px 0;
+}
+
+.title-bold {
+  color: var(--dk-blue);
+}
+
+.title-small {
+  color: var(--grey);
+}
+
+/* Planned/InProg/Live Card */
+.req-card {
+  position: relative;
+  height: 350px;
+  border-radius: 10px;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0 32px;
+  margin-bottom: 24px;
+}
+
+.req-card-top-color {
+  height: 6px;
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.req-card-top-planned {
+  background-color: var(--orange);
+}
+
+.req-card-top-inprogress {
+  background-color: var(--purple);
+}
+
+.req-card-top-live {
+  background-color: var(--sky-blue);
+}
+
+.req-card-title {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  color: var(--grey);
+}
+
+.req-card-bottom {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.req-card-upvote {
+  border: none;
+  outline: none;
+  width: 70px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: var(--lt-grey);
+  color: var(--v-dk-blue);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.req-card-upvote:hover {
+  background-color: #cfd7ff;
+  cursor: pointer;
+}
+
+.req-card-upvote-active {
+  background-color: var(--sea-blue);
+  color: var(--white);
 }

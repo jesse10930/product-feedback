@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import DataContext from '../context/data/dataContext';
 
 const Roadmap = () => {
@@ -30,21 +31,23 @@ const Roadmap = () => {
     <div id='roadmap-container'>
       <div id='rm-title'>
         <h3 className='header3'>Roadmap</h3>
-        <button className='view-btn header4'>View</button>
+        <Link to='/roadmappage' className='view-btn header4'>
+          View
+        </Link>
       </div>
       <div id='rm-list'>
         <div className='rm-list-item'>
-          <div id='planned-dot' className='dot'></div>
+          <div className='dot planned-dot'></div>
           <p className='body1'>Planned</p>
           <h3 className='rm-num header3'>{planCount}</h3>
         </div>
         <div className='rm-list-item'>
-          <div id='in-progress-dot' className='dot'></div>
+          <div className='dot in-progress-dot'></div>
           <p className='body1'>In-Progress</p>
           <h3 className='rm-num header3'>{inProgCount}</h3>
         </div>
         <div className='rm-list-item'>
-          <div id='live-dot' className='dot'></div>
+          <div className='dot live-dot'></div>
           <p className='body1'>Live</p>
           <h3 id='test' className='rm-num header3'>
             {liveCount}
