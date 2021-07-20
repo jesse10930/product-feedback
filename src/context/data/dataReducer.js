@@ -1,4 +1,4 @@
-import { GET_DATA, UPDATE_TAG, UPDATE_SORTBY } from '../types';
+import { GET_DATA, UPDATE_TAG, UPDATE_SORTBY, UPDATE_UPVOTE } from '../types';
 
 const dataReducer = (state, action) => {
   switch (action.type) {
@@ -17,6 +17,11 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         sortByFilter: action.payload,
+      };
+    case UPDATE_UPVOTE:
+      return {
+        ...state,
+        requests: action.payload,
       };
     default:
       return state;

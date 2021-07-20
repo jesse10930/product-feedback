@@ -184,6 +184,11 @@
   cursor: pointer;
 }
 
+.upvote-active {
+  background-color: var(--sea-blue);
+  color: var(--white);
+}
+
 /* Tag Elements */
 .tag {
   display: flex;

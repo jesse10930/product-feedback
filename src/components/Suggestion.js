@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import DataContext from '../context/data/dataContext';
 
 const Suggestion = ({ suggestionItem }) => {
+  // Declare and destructure context
+  const dataContext = useContext(DataContext);
+  const { updateUpvote } = dataContext;
+
   // Destructure suggestionItem object
-  const { upvotes, title, description, comments, category } = suggestionItem;
+  const { upvotes, title, description, comments, category, id } =
+    suggestionItem;
+
+  // Declare component level state
+  const [activeUpVote, setActiveUpVote] = useState(false);
 
   // Get number of comments
   let commentsCount = comments ? comments.length : 0;
@@ -10,13 +19,29 @@ const Suggestion = ({ suggestionItem }) => {
   // Capitalize category
   let capCategory = category.charAt(0).toUpperCase() + category.slice(1);
 
+  // On up vote click
+  const onUpVoteClick = (e) => {
+    let buttonDiv =
+      e.target.tagName === 'BUTTON'
+        ? e.target
+        : e.target.tagName === 'path'
+        ? e.target.parentNode.parentNode
+        : e.target.parentNode;
+    let newActiveState = !activeUpVote;
+    let upVoteVal = parseInt(buttonDiv.childNodes[1].textContent);
+
+    buttonDiv.classList.toggle('upvote-active');
+    setActiveUpVote(newActiveState);
+    updateUpvote(upVoteVal, id, newActiveState);
+  };
+
   return (
     <div className='suggestion-component'>
-      <button className='upvote'>
+      <button className='upvote' onClick={onUpVoteClick}>
         <svg width='10' height='7' xmlns='http://www.w3.org/2000/svg'>
           <path
             d='M1 6l4-4 4 4'
-            stroke='#4661E6'
+            stroke={activeUpVote ? '#FFFFFF' : '#4661E6'}
             strokeWidth='2'
             fill='none'
             fillRule='evenodd'

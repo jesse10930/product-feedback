@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Suggestion from './Suggestion';
 import DataContext from '../context/data/dataContext';
 
@@ -45,6 +45,35 @@ const Suggestions = () => {
     default:
       filtered.sort((a, b) => b.upvotes - a.upvotes);
   }
+
+  // useEffect(() => {
+  //   switch (sortByFilter) {
+  //     case 'Most Upvotes':
+  //       filtered.sort((a, b) =>
+  //         !a.upvotes || !b.upvotes ? 1 : b.upvotes - a.upvotes
+  //       );
+  //       break;
+  //     case 'Least Upvotes':
+  //       filtered.sort((a, b) =>
+  //         !a.upvotes || !b.upvotes ? -1 : a.upvotes - b.upvotes
+  //       );
+  //       break;
+  //     case 'Most Comments':
+  //       filtered.sort((a, b) =>
+  //         !a.comments || !b.comments ? 1 : b.comments.length - a.comments.length
+  //       );
+  //       break;
+  //     case 'Least Comments':
+  //       filtered.sort((a, b) =>
+  //         !a.comments || !b.comments
+  //           ? -1
+  //           : a.comments.length - b.comments.length
+  //       );
+  //       break;
+  //     default:
+  //       filtered.sort((a, b) => b.upvotes - a.upvotes);
+  //   }
+  // }, [sortByFilter]);
 
   return (
     <div id='all-suggs'>
