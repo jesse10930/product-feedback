@@ -165,3 +165,24 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+/* Comments Component */
+#sugg-comms-cont {
+  width: 800px;
+  margin: auto;
+}
+
+#comments-header {
+  display: flex;
+  flex-direction: column;
+}
+
+#coms-head-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.disabled {
+  pointer-events: none;
+}

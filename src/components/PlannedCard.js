@@ -1,14 +1,38 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import DataContext from '../context/data/dataContext';
 
 const PlannedCard = ({ plannedItem }) => {
+  // Declare and destructure context
+  const dataContext = useContext(DataContext);
+  const { updateUpvote } = dataContext;
+
+  // Declare component level state
+  const [activeUpVote, setActiveUpVote] = useState(false);
+
   // Destructure props
-  const { title, category, upvotes, description, comments } = plannedItem;
+  const { title, category, upvotes, description, comments, id } = plannedItem;
 
   // Check if comments exists
   let commentCount = comments ? comments.length : 0;
 
   // Capitalize category
   let capCategory = category.charAt(0).toUpperCase() + category.slice(1);
+
+  // On up vote click
+  const onUpVoteClick = (e) => {
+    let buttonDiv =
+      e.target.tagName === 'BUTTON'
+        ? e.target
+        : e.target.tagName === 'path'
+        ? e.target.parentNode.parentNode
+        : e.target.parentNode;
+    let newActiveState = !activeUpVote;
+    let upVoteVal = parseInt(buttonDiv.childNodes[1].textContent);
+
+    buttonDiv.classList.toggle('req-card-upvote-active');
+    setActiveUpVote(newActiveState);
+    updateUpvote(upVoteVal, id, newActiveState);
+  };
 
   return (
     <div className='req-card'>
@@ -21,11 +45,11 @@ const PlannedCard = ({ plannedItem }) => {
       <p className='body1 title-small'>{description}</p>
       <div className='non-tag header4'>{capCategory}</div>
       <div className='req-card-bottom'>
-        <button className='req-card-upvote'>
+        <button className='req-card-upvote' onClick={onUpVoteClick}>
           <svg width='10' height='7' xmlns='http://www.w3.org/2000/svg'>
             <path
               d='M1 6l4-4 4 4'
-              stroke='#4661e6'
+              stroke={activeUpVote ? '#FFFFFF' : '#4661E6'}
               strokeWidth='2'
               fill='none'
               fillRule='evenodd'

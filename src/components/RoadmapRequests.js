@@ -20,7 +20,6 @@ const RoadmapRequests = () => {
   );
   let liveArr = requests.filter((request) => request['status'] === 'live');
 
-  console.log(plannedArr);
   return (
     <div id='roadmap-reqs'>
       <PlannedContainer plannedArr={plannedArr} />

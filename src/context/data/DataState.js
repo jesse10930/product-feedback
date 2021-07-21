@@ -1,28 +1,42 @@
 import React, { useReducer } from 'react';
 import DataContext from './dataContext';
 import dataReducer from './dataReducer';
-import { GET_DATA, UPDATE_TAG, UPDATE_SORTBY, UPDATE_UPVOTE } from '../types';
+import {
+  GET_DATA,
+  UPDATE_TAG,
+  UPDATE_SORTBY,
+  UPDATE_UPVOTE,
+  CHANGE_SUGGCLICKED,
+} from '../types';
 
 const DataState = (props) => {
   const initialState = {
     curUser: {},
     requests: [],
+    activeRequest: [],
     activeTag: 'All',
     sortByFilter: 'Most Upvotes',
+    suggClicked: false,
   };
   const [state, dispatch] = useReducer(dataReducer, initialState);
 
   // Get Data
   const getData = () => {
-    if (localStorage.getItem('requests') === null) {
+    if (sessionStorage.getItem('requests') === null) {
       const data = require('../../data.json');
 
-      localStorage.setItem('currentUser', JSON.stringify(data['currentUser']));
-      localStorage.setItem('requests', JSON.stringify(data['productRequests']));
+      sessionStorage.setItem(
+        'currentUser',
+        JSON.stringify(data['currentUser'])
+      );
+      sessionStorage.setItem(
+        'requests',
+        JSON.stringify(data['productRequests'])
+      );
     }
 
-    let curUser = JSON.parse(localStorage.getItem('curUser'));
-    let requests = JSON.parse(localStorage.getItem('requests'));
+    let curUser = JSON.parse(sessionStorage.getItem('curUser'));
+    let requests = JSON.parse(sessionStorage.getItem('requests'));
 
     dispatch({
       type: GET_DATA,
@@ -58,13 +72,25 @@ const DataState = (props) => {
 
     curRequests[reqIndex].upvotes = add ? curUpvoteVal + 1 : curUpvoteVal - 1;
 
-    localStorage.setItem('requests', JSON.stringify(curRequests));
+    sessionStorage.setItem('requests', JSON.stringify(curRequests));
 
-    let updatedRequests = JSON.parse(localStorage.getItem('requests'));
+    let updatedRequests = JSON.parse(sessionStorage.getItem('requests'));
 
     dispatch({
       type: UPDATE_UPVOTE,
       payload: updatedRequests,
+    });
+  };
+
+  // Change suggestion clicked status
+  const suggCompClicked = (clickedRequest) => {
+    let newStatus = !state.suggClicked;
+    let newActiveRequest = state.suggClicked ? [] : clickedRequest;
+
+    dispatch({
+      type: CHANGE_SUGGCLICKED,
+      payload1: newStatus,
+      payload2: newActiveRequest,
     });
   };
 
@@ -75,10 +101,13 @@ const DataState = (props) => {
         requests: state.requests,
         activeTag: state.activeTag,
         sortByFilter: state.sortByFilter,
+        suggClicked: state.suggClicked,
+        activeRequest: state.activeRequest,
         getData,
         updateActiveTag,
         updateSortByFilter,
         updateUpvote,
+        suggCompClicked,
       }}
     >
       {props.children}

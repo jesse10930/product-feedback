@@ -1,4 +1,10 @@
-import { GET_DATA, UPDATE_TAG, UPDATE_SORTBY, UPDATE_UPVOTE } from '../types';
+import {
+  GET_DATA,
+  UPDATE_TAG,
+  UPDATE_SORTBY,
+  UPDATE_UPVOTE,
+  CHANGE_SUGGCLICKED,
+} from '../types';
 
 const dataReducer = (state, action) => {
   switch (action.type) {
@@ -22,6 +28,12 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         requests: action.payload,
+      };
+    case CHANGE_SUGGCLICKED:
+      return {
+        ...state,
+        suggClicked: action.payload1,
+        activeRequest: action.payload2,
       };
     default:
       return state;

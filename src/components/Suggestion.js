@@ -4,7 +4,7 @@ import DataContext from '../context/data/dataContext';
 const Suggestion = ({ suggestionItem }) => {
   // Declare and destructure context
   const dataContext = useContext(DataContext);
-  const { updateUpvote } = dataContext;
+  const { updateUpvote, suggCompClicked } = dataContext;
 
   // Destructure suggestionItem object
   const { upvotes, title, description, comments, category, id } =
@@ -22,7 +22,7 @@ const Suggestion = ({ suggestionItem }) => {
   // On up vote click
   const onUpVoteClick = (e) => {
     let buttonDiv =
-      e.target.tagName === 'BUTTON'
+      e.target.tagName === 'DIV'
         ? e.target
         : e.target.tagName === 'path'
         ? e.target.parentNode.parentNode
@@ -33,11 +33,18 @@ const Suggestion = ({ suggestionItem }) => {
     buttonDiv.classList.toggle('upvote-active');
     setActiveUpVote(newActiveState);
     updateUpvote(upVoteVal, id, newActiveState);
+    e.stopPropagation();
+  };
+
+  // On suggestion click
+  const callSuggCompClicked = (e) => {
+    let clickedSuggItem = suggestionItem;
+    suggCompClicked(clickedSuggItem);
   };
 
   return (
-    <div className='suggestion-component'>
-      <button className='upvote' onClick={onUpVoteClick}>
+    <button className='suggestion-component' onClick={callSuggCompClicked}>
+      <div className='upvote' onClick={onUpVoteClick}>
         <svg width='10' height='7' xmlns='http://www.w3.org/2000/svg'>
           <path
             d='M1 6l4-4 4 4'
@@ -48,7 +55,7 @@ const Suggestion = ({ suggestionItem }) => {
           />
         </svg>
         <h4 className='header4'>{upvotes}</h4>
-      </button>
+      </div>
       <div className='tit-desc-cat'>
         <h3 className='header3 sug-title'>{title}</h3>
         <p className='body1 sug-desc'>{description}</p>
@@ -66,7 +73,7 @@ const Suggestion = ({ suggestionItem }) => {
         </svg>
         <h3 className='header3'>{commentsCount}</h3>
       </div>
-    </div>
+    </button>
   );
 };
 
