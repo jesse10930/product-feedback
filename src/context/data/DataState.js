@@ -25,6 +25,10 @@ const DataState = (props) => {
     if (sessionStorage.getItem('requests') === null) {
       const data = require('../../data.json');
 
+      for (let i = 0; i < data['productRequests'].length; i++) {
+        data['productRequests'][i]['active'] = false;
+      }
+
       sessionStorage.setItem(
         'currentUser',
         JSON.stringify(data['currentUser'])
@@ -71,6 +75,7 @@ const DataState = (props) => {
     let reqIndex = curRequests.findIndex((req) => req.id === sugId);
 
     curRequests[reqIndex].upvotes = add ? curUpvoteVal + 1 : curUpvoteVal - 1;
+    curRequests[reqIndex].active = add;
 
     sessionStorage.setItem('requests', JSON.stringify(curRequests));
 

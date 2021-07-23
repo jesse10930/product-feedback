@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import DataContext from '../context/data/dataContext';
 
 const Suggestion = ({ suggestionItem }) => {
@@ -6,12 +6,9 @@ const Suggestion = ({ suggestionItem }) => {
   const dataContext = useContext(DataContext);
   const { updateUpvote, suggCompClicked } = dataContext;
 
-  // Destructure suggestionItem object
-  const { upvotes, title, description, comments, category, id } =
+  // Destructure props
+  const { upvotes, title, description, comments, category, id, active } =
     suggestionItem;
-
-  // Declare component level state
-  const [activeUpVote, setActiveUpVote] = useState(false);
 
   // Get number of comments
   let commentsCount = comments ? comments.length : 0;
@@ -27,11 +24,9 @@ const Suggestion = ({ suggestionItem }) => {
         : e.target.tagName === 'path'
         ? e.target.parentNode.parentNode
         : e.target.parentNode;
-    let newActiveState = !activeUpVote;
+    let newActiveState = !active;
     let upVoteVal = parseInt(buttonDiv.childNodes[1].textContent);
 
-    buttonDiv.classList.toggle('upvote-active');
-    setActiveUpVote(newActiveState);
     updateUpvote(upVoteVal, id, newActiveState);
     e.stopPropagation();
   };
@@ -42,13 +37,23 @@ const Suggestion = ({ suggestionItem }) => {
     suggCompClicked(clickedSuggItem);
   };
 
+  // Active upvote style
+  const activeStyling = {
+    backgroundColor: '#4661E6',
+    color: '#ffffff',
+  };
+
   return (
     <button className='suggestion-component' onClick={callSuggCompClicked}>
-      <div className='upvote' onClick={onUpVoteClick}>
+      <div
+        className='upvote'
+        onClick={onUpVoteClick}
+        style={active ? activeStyling : null}
+      >
         <svg width='10' height='7' xmlns='http://www.w3.org/2000/svg'>
           <path
             d='M1 6l4-4 4 4'
-            stroke={activeUpVote ? '#FFFFFF' : '#4661E6'}
+            stroke={active ? '#FFFFFF' : '#4661E6'}
             strokeWidth='2'
             fill='none'
             fillRule='evenodd'

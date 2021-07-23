@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
-import PlannedContainer from './PlannedContainer';
-import InProgressContainer from './InProgressContainer';
-import LiveContainer from './LiveContainer';
+import RequestsContainer from './RequestsContainer';
 import DataContext from '../context/data/dataContext';
 
 const RoadmapRequests = () => {
@@ -9,12 +7,10 @@ const RoadmapRequests = () => {
   const dataContext = useContext(DataContext);
   const { requests } = dataContext;
 
-  // Declare requests that are suggestions
+  // Declare requests that are planned, in-progress, or live
   let plannedArr = requests.filter(
     (request) => request['status'] === 'planned'
   );
-
-  //
   let inProgressArr = requests.filter(
     (request) => request['status'] === 'in-progress'
   );
@@ -22,9 +18,11 @@ const RoadmapRequests = () => {
 
   return (
     <div id='roadmap-reqs'>
-      <PlannedContainer plannedArr={plannedArr} />
-      <InProgressContainer inProgressArr={inProgressArr} />
-      <LiveContainer liveArr={liveArr} />
+      <RequestsContainer
+        plannedArr={plannedArr}
+        inProgressArr={inProgressArr}
+        liveArr={liveArr}
+      />
     </div>
   );
 };

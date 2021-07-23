@@ -1,7 +1,7 @@
 import React, { useContext, Fragment } from 'react';
 import Sidebar from '../Sidebar';
 import SuggestionsContainer from '../SuggestionsContainer';
-import SuggestionComments from '../SuggestionComments';
+import CommentsComponent from '../CommentsComponent';
 import DataContext from '../../context/data/dataContext';
 
 const Home = () => {
@@ -18,7 +18,7 @@ const Home = () => {
         </div>
       ) : (
         <div id='sugg-comments'>
-          <SuggestionComments />
+          <CommentsComponent />
         </div>
       )}
     </Fragment>

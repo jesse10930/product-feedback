@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
-import SuggestionCommentsHeader from './SuggestionCommentsHeader';
-import SuggestionCommentsContainer from './SuggestionCommentsContainer';
+import CommentsHeader from './CommentsHeader';
+import CommentsContainer from './CommentsContainer';
 import AddComment from './AddComment';
 import DataContext from '../context/data/dataContext';
 
-const SuggestionComments = () => {
+const CommentsComponent = () => {
   // Declare and destructure context
   const dataContext = useContext(DataContext);
-  const { activeRequest } = dataContext;
+  const { activeRequest, updateUpvote } = dataContext;
 
   // Descturcutre active request
-  const { category, comments, description, title, upvotes } = activeRequest;
+  const { category, comments } = activeRequest;
 
   // Get comments count
   let commentsCount = comments ? comments.length : 0;
@@ -20,17 +20,16 @@ const SuggestionComments = () => {
 
   return (
     <div id='sugg-comms-cont'>
-      <SuggestionCommentsHeader
-        upvotes={upvotes}
-        title={title}
-        description={description}
-        category={capCategory}
+      <CommentsHeader
         count={commentsCount}
+        category={capCategory}
+        reqObj={activeRequest}
+        updateUpvote={updateUpvote}
       />
-      <SuggestionCommentsContainer comments={comments} />
+      <CommentsContainer comments={comments} />
       <AddComment />
     </div>
   );
 };
 
-export default SuggestionComments;
+export default CommentsComponent;

@@ -1,16 +1,41 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import DataContext from '../context/data/dataContext';
 
-const SuggestionCommentsHeader = ({
-  upvotes,
-  title,
-  description,
-  category,
-  count,
-}) => {
+const CommentsHeader = ({ count, category, reqObj, updateUpvote }) => {
   // Declare and destructure context
   const dataContext = useContext(DataContext);
   const { suggCompClicked } = dataContext;
+
+  // Destructure props
+  const { upvotes, title, description, id, active } = reqObj;
+
+  // Declare component state
+  const [compActive, setCompActive] = useState(active);
+  const [compVoteCount, setCompVoteCount] = useState(upvotes);
+
+  // On up vote click
+  const onUpVoteClick = (e) => {
+    let buttonDiv =
+      e.target.tagName === 'DIV'
+        ? e.target
+        : e.target.tagName === 'path'
+        ? e.target.parentNode.parentNode
+        : e.target.parentNode;
+    let newActiveState = !compActive;
+    let upVoteVal = parseInt(buttonDiv.childNodes[1].textContent);
+    let newCompVal = newActiveState ? upVoteVal + 1 : upVoteVal - 1;
+
+    updateUpvote(upVoteVal, id, newActiveState);
+    setCompActive(newActiveState);
+    setCompVoteCount(newCompVal);
+    e.stopPropagation();
+  };
+
+  // Active upvote style
+  const activeStyling = {
+    backgroundColor: '#4661E6',
+    color: '#ffffff',
+  };
 
   return (
     <div id='comments-header'>
@@ -35,17 +60,21 @@ const SuggestionCommentsHeader = ({
         <button className='btn2 header4'>Edit Feedback</button>
       </div>
       <div className='suggestion-component active-sugg'>
-        <div className='upvote'>
+        <div
+          className='upvote'
+          onClick={onUpVoteClick}
+          style={compActive ? activeStyling : null}
+        >
           <svg width='10' height='7' xmlns='http://www.w3.org/2000/svg'>
             <path
               d='M1 6l4-4 4 4'
-              stroke='#4661E6'
+              stroke={compActive ? '#FFFFFF' : '#4661E6'}
               strokeWidth='2'
               fill='none'
               fillRule='evenodd'
             />
           </svg>
-          <h4 className='header4'>{upvotes}</h4>
+          <h4 className='header4'>{compVoteCount}</h4>
         </div>
         <div className='tit-desc-cat'>
           <h3 className='header3 sug-title'>{title}</h3>
@@ -69,4 +98,4 @@ const SuggestionCommentsHeader = ({
   );
 };
 
-export default SuggestionCommentsHeader;
+export default CommentsHeader;

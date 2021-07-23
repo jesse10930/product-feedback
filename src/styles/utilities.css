@@ -201,11 +201,6 @@
   cursor: pointer;
 }
 
-.upvote-active {
-  background-color: var(--sea-blue);
-  color: var(--white);
-}
-
 /* Tag Elements */
 .tag {
   display: flex;
@@ -397,19 +392,41 @@
 
 .title-small {
   color: var(--grey);
+  text-align: left;
 }
 
 /* Planned/InProg/Live Card */
 .req-card {
+  border: none;
   position: relative;
-  height: 350px;
+  height: 300px;
   border-radius: 10px;
   background-color: var(--white);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: flex-start;
   padding: 0 32px;
   margin-bottom: 24px;
+  font-family: 'Jost', sans-serif;
+}
+
+.req-card-planned:hover {
+  cursor: pointer;
+  border: 1px solid var(--orange);
+  width: 101%;
+}
+
+.req-card-inprogress:hover {
+  cursor: pointer;
+  border: 1px solid var(--purple);
+  width: 101%;
+}
+
+.req-card-live:hover {
+  cursor: pointer;
+  border: 1px solid var(--sky-blue);
+  width: 101%;
 }
 
 .req-card-top-color {
@@ -444,6 +461,7 @@
 .req-card-bottom {
   display: flex;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .req-card-upvote {
@@ -461,12 +479,6 @@
 
 .req-card-upvote:hover {
   background-color: #cfd7ff;
-  cursor: pointer;
-}
-
-.req-card-upvote-active {
-  background-color: var(--sea-blue);
-  color: var(--white);
 }
 
 /* Comments Component */
