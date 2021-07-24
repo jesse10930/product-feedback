@@ -22,17 +22,17 @@ const DataState = (props) => {
 
   // Get Data
   const getData = () => {
-    if (sessionStorage.getItem('requests') === null) {
+    if (
+      sessionStorage.getItem('requests') === null ||
+      sessionStorage.getItem('curUser') === null
+    ) {
       const data = require('../../data.json');
 
       for (let i = 0; i < data['productRequests'].length; i++) {
         data['productRequests'][i]['active'] = false;
       }
 
-      sessionStorage.setItem(
-        'currentUser',
-        JSON.stringify(data['currentUser'])
-      );
+      sessionStorage.setItem('curUser', JSON.stringify(data['currentUser']));
       sessionStorage.setItem(
         'requests',
         JSON.stringify(data['productRequests'])

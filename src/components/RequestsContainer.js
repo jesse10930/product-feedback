@@ -2,8 +2,15 @@ import React from 'react';
 import RequestCard from './RequestCard';
 
 const RequestsContainer = ({ plannedArr, inProgressArr, liveArr }) => {
-  // Declare component level state
+  // Declare props into an array
   let reqArrs = [plannedArr, inProgressArr, liveArr];
+
+  // Declare title messages
+  let titleMsgs = {
+    planned: 'Ideas prioritized for research',
+    'in-progress': 'Currently being developed',
+    live: 'Released features',
+  };
 
   return reqArrs.map((reqArr, i) => (
     <div className='req-cards-container' key={i}>
@@ -15,7 +22,7 @@ const RequestsContainer = ({ plannedArr, inProgressArr, liveArr }) => {
             : ''}{' '}
           ({reqArr.length})
         </h3>
-        <p className='title-small body1'>Ideas prioritized for research</p>
+        <p className='title-small body1'>{titleMsgs[reqArr[0].status]}</p>
       </div>
       {reqArr.map((reqItem, j) => (
         <RequestCard reqItem={reqItem} key={j} />

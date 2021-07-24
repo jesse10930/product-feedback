@@ -18,6 +18,9 @@ const CommentsComponent = () => {
   // Capitalize category
   let capCategory = category.charAt(0).toUpperCase() + category.slice(1);
 
+  // Set empty array if comments don't exist
+  let commentsArr = comments ? comments : [];
+
   return (
     <div id='sugg-comms-cont'>
       <CommentsHeader
@@ -26,7 +29,7 @@ const CommentsComponent = () => {
         reqObj={activeRequest}
         updateUpvote={updateUpvote}
       />
-      <CommentsContainer comments={comments} />
+      <CommentsContainer comments={commentsArr} />
       <AddComment />
     </div>
   );
