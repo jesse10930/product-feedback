@@ -4,6 +4,7 @@ import {
   UPDATE_SORTBY,
   UPDATE_UPVOTE,
   CHANGE_SUGGCLICKED,
+  ADD_COMMENT,
 } from '../types';
 
 const dataReducer = (state, action) => {
@@ -34,6 +35,13 @@ const dataReducer = (state, action) => {
         ...state,
         suggClicked: action.payload1,
         activeRequest: action.payload2,
+      };
+    case ADD_COMMENT:
+      return {
+        ...state,
+        requests: action.payload1,
+        commentsCount: action.payload2,
+        activeRequest: action.payload3,
       };
     default:
       return state;

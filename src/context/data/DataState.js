@@ -7,6 +7,7 @@ import {
   UPDATE_SORTBY,
   UPDATE_UPVOTE,
   CHANGE_SUGGCLICKED,
+  ADD_COMMENT,
 } from '../types';
 
 const DataState = (props) => {
@@ -17,6 +18,7 @@ const DataState = (props) => {
     activeTag: 'All',
     sortByFilter: 'Most Upvotes',
     suggClicked: false,
+    commentsCount: 15,
   };
   const [state, dispatch] = useReducer(dataReducer, initialState);
 
@@ -99,6 +101,44 @@ const DataState = (props) => {
     });
   };
 
+  // Add a comment
+  const addComment = (userComment) => {
+    // Get current requests and active index
+    let curRequests = state.requests;
+    let reqIndex = curRequests.findIndex(
+      (req) => req.id === state.activeRequest.id
+    );
+
+    // Get current comments for active request, declare and store new comments array
+    let curComments = curRequests[reqIndex].comments
+      ? curRequests[reqIndex].comments
+      : [];
+    let newComment = {
+      id: state.commentsCount + 1,
+      content: userComment,
+      user: state.curUser,
+    };
+    curComments.push(newComment);
+
+    // Update requests
+    curRequests[reqIndex].comments = curComments;
+
+    // Update active request
+    let newActiveRequest = curRequests[reqIndex];
+
+    // Set session storage and declare as JSON obj
+    sessionStorage.setItem('requests', JSON.stringify(curRequests));
+    let updatedRequests = JSON.parse(sessionStorage.getItem('requests'));
+    let newCommentsCount = state.commentsCount + 1;
+
+    dispatch({
+      type: ADD_COMMENT,
+      payload1: updatedRequests,
+      payload2: newCommentsCount,
+      payload3: newActiveRequest,
+    });
+  };
+
   return (
     <DataContext.Provider
       value={{
@@ -108,11 +148,13 @@ const DataState = (props) => {
         sortByFilter: state.sortByFilter,
         suggClicked: state.suggClicked,
         activeRequest: state.activeRequest,
+        commentsCount: state.commentsCount,
         getData,
         updateActiveTag,
         updateSortByFilter,
         updateUpvote,
         suggCompClicked,
+        addComment,
       }}
     >
       {props.children}
