@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import RequestsContainer from './RequestsContainer';
-import DataContext from '../context/data/dataContext';
+import RequestsContainer from '../requests/RequestsContainer';
+import DataContext from '../../context/data/dataContext';
 
 const RoadmapRequests = () => {
   // Declare and destructure context

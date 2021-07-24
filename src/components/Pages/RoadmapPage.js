@@ -1,7 +1,7 @@
 import React, { useContext, Fragment } from 'react';
-import RoadmapHeader from '../RoadmapHeader';
-import RoadmapRequests from '../RoadmapRequests';
-import CommentsComponent from '../CommentsComponent';
+import RoadmapHeader from '../roadmap_layouts/RoadmapHeader';
+import RoadmapRequests from '../roadmap_layouts/RoadmapRequests';
+import CommentsComponent from '../comments/CommentsComponent';
 import DataContext from '../../context/data/dataContext';
 
 const RoadmapPage = () => {

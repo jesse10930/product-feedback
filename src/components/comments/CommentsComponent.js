@@ -2,17 +2,17 @@ import React, { useContext } from 'react';
 import CommentsHeader from './CommentsHeader';
 import CommentsContainer from './CommentsContainer';
 import AddComment from './AddComment';
-import DataContext from '../context/data/dataContext';
+import DataContext from '../../context/data/dataContext';
 
 const CommentsComponent = () => {
   // Declare and destructure context
   const dataContext = useContext(DataContext);
   const { activeRequest, updateUpvote } = dataContext;
 
-  // Descturcutre active request
+  // Descturcutre active request from context
   const { category, comments } = activeRequest;
 
-  // Get comments count
+  // Declare comments count
   let commentsCount = comments ? comments.length : 0;
 
   // Capitalize category

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import DataContext from '../context/data/dataContext';
+import DataContext from '../../context/data/dataContext';
 
 const AddComment = () => {
   // Declare and destructure context
@@ -10,23 +10,23 @@ const AddComment = () => {
   const [chars, setChars] = useState(250);
   const [userComment, setUserComment] = useState('');
 
+  // On comment change
+  const userCommentChange = (e) => {
+    // Set state for input field
+    setUserComment(e.target.value.substring(0, 250));
+
+    // Set state for chars remaining
+    let inputString = e.target.value;
+    let newChars = inputString.length > 250 ? 0 : 250 - inputString.length;
+    setChars(newChars);
+  };
+
   // On form submition
   const onPostClick = (e) => {
     e.preventDefault();
     addComment(userComment);
     setUserComment('');
     setChars(250);
-  };
-
-  // On comment change
-  const userCommentChange = (e) => {
-    // Set state for input field
-    setUserComment(e.target.value.substring(0, 249));
-
-    // Set state for chars remaining
-    let inputString = e.target.value;
-    let newChars = 250 - inputString.length;
-    setChars(newChars);
   };
 
   return (

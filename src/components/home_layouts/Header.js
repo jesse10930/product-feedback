@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import DataContext from '../context/data/dataContext';
+import DataContext from '../../context/data/dataContext';
 
 const Header = () => {
   // Declare and destructure context

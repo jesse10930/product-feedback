@@ -1,7 +1,7 @@
 import React, { useContext, Fragment } from 'react';
-import Sidebar from '../Sidebar';
-import SuggestionsContainer from '../SuggestionsContainer';
-import CommentsComponent from '../CommentsComponent';
+import Sidebar from '../home_layouts/Sidebar';
+import HomeContainer from '../home_layouts/HomeContainer';
+import CommentsComponent from '../comments/CommentsComponent';
 import DataContext from '../../context/data/dataContext';
 
 const Home = () => {
@@ -14,7 +14,7 @@ const Home = () => {
       {!suggClicked ? (
         <div id='sidebar-sugg-layout'>
           <Sidebar />
-          <SuggestionsContainer />
+          <HomeContainer />
         </div>
       ) : (
         <div id='sugg-comments'>

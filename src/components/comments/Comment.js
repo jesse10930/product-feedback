@@ -2,9 +2,10 @@ import React from 'react';
 import Reply from './Reply';
 
 const Comment = ({ comment }) => {
-  // Destructur comment prop
+  // Destructure comment prop
   const { content, user, replies } = comment;
 
+  // Declare array for replies
   const repliesArr = replies ? replies : [];
 
   return (

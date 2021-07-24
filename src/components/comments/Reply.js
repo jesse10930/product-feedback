@@ -3,6 +3,7 @@ import React from 'react';
 const Reply = ({ reply }) => {
   // Destructure reply prop
   const { content, replyingTo, user } = reply;
+
   return (
     <div className='reply-container'>
       <div className='pic-cont'>

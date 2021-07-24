@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import DataContext from '../context/data/dataContext';
+import DataContext from '../../context/data/dataContext';
 
 const Roadmap = () => {
   // Declare and destructure context

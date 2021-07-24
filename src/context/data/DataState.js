@@ -8,6 +8,8 @@ import {
   UPDATE_UPVOTE,
   CHANGE_SUGGCLICKED,
   ADD_COMMENT,
+  SET_ACTIVEREQ,
+  COMMENTS_COUNT,
 } from '../types';
 
 const DataState = (props) => {
@@ -24,6 +26,7 @@ const DataState = (props) => {
 
   // Get Data
   const getData = () => {
+    // If session storage empty, get data from JSON file
     if (
       sessionStorage.getItem('requests') === null ||
       sessionStorage.getItem('curUser') === null
@@ -41,6 +44,7 @@ const DataState = (props) => {
       );
     }
 
+    // Declare session storage data as an object
     let curUser = JSON.parse(sessionStorage.getItem('curUser'));
     let requests = JSON.parse(sessionStorage.getItem('requests'));
 
@@ -76,11 +80,12 @@ const DataState = (props) => {
     let curRequests = state.requests;
     let reqIndex = curRequests.findIndex((req) => req.id === sugId);
 
+    // Find active request and change upvote value
     curRequests[reqIndex].upvotes = add ? curUpvoteVal + 1 : curUpvoteVal - 1;
     curRequests[reqIndex].active = add;
 
+    // Set updated object in storage, and then parse to object
     sessionStorage.setItem('requests', JSON.stringify(curRequests));
-
     let updatedRequests = JSON.parse(sessionStorage.getItem('requests'));
 
     dispatch({
@@ -92,12 +97,27 @@ const DataState = (props) => {
   // Change suggestion clicked status
   const suggCompClicked = (clickedRequest) => {
     let newStatus = !state.suggClicked;
-    let newActiveRequest = state.suggClicked ? [] : clickedRequest;
+    setActiveRequest(clickedRequest, false);
 
     dispatch({
       type: CHANGE_SUGGCLICKED,
-      payload1: newStatus,
-      payload2: newActiveRequest,
+      payload: newStatus,
+    });
+  };
+
+  // Set active request
+  const setActiveRequest = (clickedRequest, comment) => {
+    let newActiveRequest;
+
+    if (!comment) {
+      newActiveRequest = state.suggClicked ? [] : clickedRequest;
+    } else {
+      newActiveRequest = clickedRequest;
+    }
+
+    dispatch({
+      type: SET_ACTIVEREQ,
+      payload: newActiveRequest,
     });
   };
 
@@ -124,18 +144,25 @@ const DataState = (props) => {
     curRequests[reqIndex].comments = curComments;
 
     // Update active request
-    let newActiveRequest = curRequests[reqIndex];
+    setActiveRequest(curRequests[reqIndex], true);
 
     // Set session storage and declare as JSON obj
     sessionStorage.setItem('requests', JSON.stringify(curRequests));
     let updatedRequests = JSON.parse(sessionStorage.getItem('requests'));
-    let newCommentsCount = state.commentsCount + 1;
 
     dispatch({
       type: ADD_COMMENT,
-      payload1: updatedRequests,
-      payload2: newCommentsCount,
-      payload3: newActiveRequest,
+      payload: updatedRequests,
+    });
+  };
+
+  // Update comment count
+  const updateCommentCount = () => {
+    let newCommentsCount = state.commentsCount + 1;
+
+    dispatch({
+      type: COMMENTS_COUNT,
+      payload: newCommentsCount,
     });
   };
 
@@ -155,6 +182,8 @@ const DataState = (props) => {
         updateUpvote,
         suggCompClicked,
         addComment,
+        setActiveRequest,
+        updateCommentCount,
       }}
     >
       {props.children}

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import Tag from './Tag';
-import DataContext from '../context/data/dataContext';
+import DataContext from '../../context/data/dataContext';
 
 const Tags = () => {
   // Declare and destructure context
@@ -8,7 +8,7 @@ const Tags = () => {
   const { activeTag, updateActiveTag } = dataContext;
 
   // Component level state
-  const [tagLabels, setTagLabels] = useState([
+  const [tagLabels] = useState([
     'All',
     'UI',
     'UX',
@@ -16,7 +16,6 @@ const Tags = () => {
     'Bug',
     'Feature',
   ]);
-  // const [current, setCurrent] = useState('All');
 
   // When tag is clicked
   const onTagClick = (e) => {

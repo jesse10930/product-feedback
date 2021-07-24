@@ -1,6 +1,6 @@
 import React from 'react';
-import Home from './components/Pages/Home';
-import RoadmapPage from './components/Pages/RoadmapPage';
+import Home from './components/pages/Home';
+import RoadmapPage from './components/pages/RoadmapPage';
 import DataState from './context/data/DataState';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';

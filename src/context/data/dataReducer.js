@@ -5,6 +5,8 @@ import {
   UPDATE_UPVOTE,
   CHANGE_SUGGCLICKED,
   ADD_COMMENT,
+  SET_ACTIVEREQ,
+  COMMENTS_COUNT,
 } from '../types';
 
 const dataReducer = (state, action) => {
@@ -33,15 +35,24 @@ const dataReducer = (state, action) => {
     case CHANGE_SUGGCLICKED:
       return {
         ...state,
-        suggClicked: action.payload1,
-        activeRequest: action.payload2,
+        suggClicked: action.payload,
+      };
+    case SET_ACTIVEREQ:
+      return {
+        ...state,
+        activeRequest: action.payload,
+      };
+    case COMMENTS_COUNT:
+      return {
+        ...state,
+        commentsCount: action.payload,
       };
     case ADD_COMMENT:
       return {
         ...state,
-        requests: action.payload1,
-        commentsCount: action.payload2,
-        activeRequest: action.payload3,
+        requests: action.payload,
+        // commentsCount: action.payload2,
+        // activeRequest: action.payload3,
       };
     default:
       return state;

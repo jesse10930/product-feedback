@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import DataContext from '../context/data/dataContext';
+import DataContext from '../../context/data/dataContext';
 
 const Suggestion = ({ suggestionItem }) => {
   // Declare and destructure context

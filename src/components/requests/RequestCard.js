@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import DataContext from '../context/data/dataContext';
+import DataContext from '../../context/data/dataContext';
 
 const RequestCard = ({ reqItem }) => {
   // Declare and destructure context
@@ -43,7 +43,7 @@ const RequestCard = ({ reqItem }) => {
   };
 
   // On suggestion click
-  const callSuggCompClicked = (e) => {
+  const callSuggCompClicked = () => {
     let clickedReqItem = reqItem;
     suggCompClicked(clickedReqItem);
   };

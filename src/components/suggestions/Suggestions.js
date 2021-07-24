@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
 import Suggestion from './Suggestion';
-import DataContext from '../context/data/dataContext';
+import DataContext from '../../context/data/dataContext';
 
 const Suggestions = () => {
   // Declare and destructure context

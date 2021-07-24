@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import DataContext from '../context/data/dataContext';
+import DataContext from '../../context/data/dataContext';
 
 const CommentsHeader = ({ count, category, reqObj, updateUpvote }) => {
   // Declare and destructure context

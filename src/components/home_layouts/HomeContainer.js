@@ -1,5 +1,5 @@
 import React from 'react';
-import Suggestions from './Suggestions';
+import Suggestions from '../suggestions/Suggestions';
 import Header from './Header';
 
 const SuggestionsContainer = () => {
