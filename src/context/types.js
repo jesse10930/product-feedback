@@ -6,3 +6,4 @@ export const CHANGE_SUGGCLICKED = 'CHANGE_SUGGCLICKED';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const SET_ACTIVEREQ = 'SET_ACTIVEREQ';
 export const COMMENTS_COUNT = 'COMMENTS_COUNT';
+export const ADD_REPLY = 'ADD_REPLY';

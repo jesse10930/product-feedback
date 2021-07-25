@@ -181,6 +181,7 @@
 
 .view-btn:hover {
   cursor: pointer;
+  color: var(--sky-blue);
 }
 
 /* Vote Elements */
@@ -325,6 +326,10 @@
   padding: 27px 0;
 }
 
+.suggestion-component:hover .sug-title {
+  color: var(--sea-blue);
+}
+
 .suggestion-component > * {
   margin-left: 32px;
   margin-right: 12px;
@@ -415,31 +420,13 @@
   font-family: 'Jost', sans-serif;
 }
 
-.req-card-planned:hover {
-  cursor: pointer;
-  border: 1px solid var(--orange);
-  width: 101%;
-}
-
-.req-card-inprogress:hover {
-  cursor: pointer;
-  border: 1px solid var(--purple);
-  width: 101%;
-}
-
-.req-card-live:hover {
-  cursor: pointer;
-  border: 1px solid var(--sky-blue);
-  width: 101%;
-}
-
 .req-card-top-color {
   height: 6px;
   width: 100%;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   position: absolute;
-  top: 0;
+  top: 0px;
   left: 0;
 }
 
@@ -462,6 +449,20 @@
   color: var(--grey);
 }
 
+.req-card-button {
+  width: fit-content;
+  border: none;
+  outline: none;
+  background-color: var(--white);
+  font-family: 'Jost', sans-serif;
+  color: var(--dk-blue);
+}
+
+.req-card-button:hover {
+  cursor: pointer;
+  color: var(--sea-blue);
+}
+
 .req-card-bottom {
   display: flex;
   margin-bottom: 20px;
@@ -471,7 +472,7 @@
 .req-card-upvote {
   border: none;
   outline: none;
-  width: 70px;
+  width: 60px;
   height: 40px;
   border-radius: 10px;
   background-color: var(--lt-grey);
@@ -483,6 +484,7 @@
 
 .req-card-upvote:hover {
   background-color: #cfd7ff;
+  cursor: pointer;
 }
 
 /* Comments Component */
@@ -490,6 +492,10 @@
   border: none;
   cursor: auto;
   padding: 28px 0;
+}
+
+.active-sugg:hover .sug-title {
+  color: var(--dk-blue);
 }
 
 /* Comment */
@@ -548,6 +554,7 @@
 
 .reply:hover {
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .comment-text {
@@ -578,10 +585,40 @@
   background-color: var(--lt-grey);
 }
 
-.disabled {
-  pointer-events: none;
+/* Reply Input */
+.add-rep-cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 20px;
 }
 
-.hide {
-  display: none;
+.reply-input {
+  border: none;
+  outline: none;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--lt-grey);
+  color: var(--grey);
+  height: 70px;
+  width: 70%;
+  font-family: 'Jost', sans-serif;
+  font-size: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.reply-input:hover,
+.reply-input:focus {
+  cursor: pointer;
+  border: 1px solid var(--sea-blue);
+  height: 68px;
+}
+
+.post-rep-btn {
+  width: 117px;
+}
+
+.disabled {
+  pointer-events: none;
 }

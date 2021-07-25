@@ -47,7 +47,9 @@ const AddComment = () => {
         </p>
         <input
           type='submit'
-          className='btn1 header4'
+          className={
+            userComment.length > 0 ? 'btn1 header4' : 'btn1 header4 disabled'
+          }
           value='Post Comment'
         ></input>
       </div>

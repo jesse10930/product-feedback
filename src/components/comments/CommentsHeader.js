@@ -49,7 +49,7 @@ const CommentsHeader = ({ count, category, reqObj, updateUpvote }) => {
           >
             <path
               d='M6 9L2 5l4-4'
-              stroke='#647196'
+              stroke='#4661e6'
               strokeWidth='2'
               fill='none'
               fillRule='evenodd'

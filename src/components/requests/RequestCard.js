@@ -30,7 +30,7 @@ const RequestCard = ({ reqItem }) => {
   // On up vote click
   const onUpVoteClick = (e) => {
     let buttonDiv =
-      e.target.tagName === 'DIV'
+      e.target.tagName === 'BUTTON'
         ? e.target
         : e.target.tagName === 'path'
         ? e.target.parentNode.parentNode
@@ -39,7 +39,6 @@ const RequestCard = ({ reqItem }) => {
     let upVoteVal = parseInt(buttonDiv.childNodes[1].textContent);
 
     updateUpvote(upVoteVal, id, newActiveState);
-    e.stopPropagation();
   };
 
   // On suggestion click
@@ -55,7 +54,7 @@ const RequestCard = ({ reqItem }) => {
   };
 
   return (
-    <button
+    <div
       className={
         status === 'planned'
           ? 'req-card req-card-planned'
@@ -63,7 +62,6 @@ const RequestCard = ({ reqItem }) => {
           ? 'req-card req-card-live'
           : 'req-card req-card-inprogress'
       }
-      onClick={callSuggCompClicked}
     >
       <div
         className={
@@ -86,11 +84,16 @@ const RequestCard = ({ reqItem }) => {
         ></div>
         <p className='body1'>{capStatus}</p>
       </div>
-      <h3 className='title-bold header3'>{title}</h3>
+      <button
+        className='req-card-button title-bold header3'
+        onClick={callSuggCompClicked}
+      >
+        {title}
+      </button>
       <p className='body1 title-small'>{description}</p>
       <div className='non-tag header4'>{capCategory}</div>
       <div className='req-card-bottom'>
-        <div
+        <button
           className='req-card-upvote'
           onClick={onUpVoteClick}
           style={active ? activeStyling : null}
@@ -105,7 +108,7 @@ const RequestCard = ({ reqItem }) => {
             />
           </svg>
           <h4 className='header4'>{upvotes}</h4>
-        </div>
+        </button>
         <div className='comments-n-num'>
           <svg width='18' height='16' xmlns='http://www.w3.org/2000/svg'>
             <path
@@ -117,7 +120,7 @@ const RequestCard = ({ reqItem }) => {
           <h3 className='header3'>{commentCount}</h3>
         </div>
       </div>
-    </button>
+    </div>
   );
 };
 

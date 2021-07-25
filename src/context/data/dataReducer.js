@@ -7,6 +7,7 @@ import {
   ADD_COMMENT,
   SET_ACTIVEREQ,
   COMMENTS_COUNT,
+  ADD_REPLY,
 } from '../types';
 
 const dataReducer = (state, action) => {
@@ -51,8 +52,11 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         requests: action.payload,
-        // commentsCount: action.payload2,
-        // activeRequest: action.payload3,
+      };
+    case ADD_REPLY:
+      return {
+        ...state,
+        requests: action.payload,
       };
     default:
       return state;

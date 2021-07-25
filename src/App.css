@@ -233,6 +233,13 @@ body {
   justify-content: flex-start;
 }
 
+#comment-input:hover,
+#comment-input:focus {
+  cursor: pointer;
+  border: 1px solid var(--sea-blue);
+  height: 68px;
+}
+
 #add-com-bot {
   display: flex;
   justify-content: space-between;
@@ -241,8 +248,4 @@ body {
 
 #chars-left {
   color: var(--grey);
-}
-
-.disabled {
-  pointer-events: none;
 }

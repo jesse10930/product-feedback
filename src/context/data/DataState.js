@@ -10,6 +10,7 @@ import {
   ADD_COMMENT,
   SET_ACTIVEREQ,
   COMMENTS_COUNT,
+  ADD_REPLY,
 } from '../types';
 
 const DataState = (props) => {
@@ -166,6 +167,54 @@ const DataState = (props) => {
     });
   };
 
+  // Add a reply
+  const addReply = (userReply, commentId, userName) => {
+    // Get current requests, active request index
+    let curRequests = state.requests;
+    let reqIndex = curRequests.findIndex(
+      (req) => req.id === state.activeRequest.id
+    );
+
+    // Get current request's comments and active comment
+    let curComments = curRequests[reqIndex].comments;
+    let commIndex = curComments.findIndex((comm) => comm.id === commentId);
+    let curComment = curComments[commIndex];
+
+    // Declare current replies array, declare new reply
+    let curReplies = curComment.replies ? curComment.replies : [];
+    let newReply = {
+      content: userReply,
+      replyingTo: userName,
+      user: state.curUser,
+    };
+
+    // Add to current replies array
+    curReplies.push(newReply);
+
+    // Update replies of current comment
+    curComment.replies = curReplies;
+
+    // Update comments of active request
+    const newComments = curComments.map((comment) =>
+      comment.id === commentId ? curComment : comment
+    );
+
+    // Update requests
+    curRequests[reqIndex].comments = newComments;
+
+    // Update active request
+    setActiveRequest(curRequests[reqIndex], true);
+
+    // Set session storage and declare as JSON obj
+    sessionStorage.setItem('requests', JSON.stringify(curRequests));
+    let updatedRequests = JSON.parse(sessionStorage.getItem('requests'));
+
+    dispatch({
+      type: ADD_REPLY,
+      payload: updatedRequests,
+    });
+  };
+
   return (
     <DataContext.Provider
       value={{
@@ -184,6 +233,7 @@ const DataState = (props) => {
         addComment,
         setActiveRequest,
         updateCommentCount,
+        addReply,
       }}
     >
       {props.children}
