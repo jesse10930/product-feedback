@@ -572,7 +572,6 @@
   flex-direction: column;
   justify-content: space-between;
   margin-top: 32px;
-  padding-bottom: 32px;
   padding-left: 70px;
 }
 
@@ -581,7 +580,7 @@
   top: 65px;
   left: 17.5px;
   width: 1px;
-  height: 55%;
+  height: calc(100% - 175px);
   background-color: var(--lt-grey);
 }
 
@@ -621,4 +620,221 @@
 
 .disabled {
   pointer-events: none;
+}
+
+/* Feedback modal */
+.modal-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  background-color: var(--lt-grey);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-icon {
+  position: absolute;
+  top: 78px;
+}
+
+.modal-body {
+  height: 527px;
+  width: 456px;
+  margin-top: 50px;
+  padding: 40px 42px;
+  border-radius: 10px;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modal-bold {
+  color: var(--dk-blue);
+}
+
+.modal-light {
+  color: var(--grey);
+}
+
+.fb-container {
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.fb-container-lg {
+  height: 168px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+/* Feedback title */
+.fb-title-input {
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  height: 48px;
+  background-color: var(--lt-grey);
+  color: var(--grey);
+  font-family: 'Jost', sans-serif;
+  font-size: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 20px;
+}
+
+.fb-title-input:hover,
+.fb-title-input:focus {
+  cursor: pointer;
+  border: 1px solid var(--sea-blue);
+  height: 46px;
+}
+
+/* Dropdown */
+.fb-dropdown-wrapper {
+  position: relative;
+  user-select: none;
+  width: 100%;
+}
+
+.fb-dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.fb-select-trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  outline: none;
+  padding-left: 20px;
+  height: 48px;
+  border-radius: 10px;
+  color: var(--dk-blue);
+  background-color: var(--lt-grey);
+  font-family: 'Jost', sans-serif;
+}
+
+.fb-select-trigger:hover {
+  cursor: pointer;
+  border: 1px solid var(--sea-blue);
+  padding: 0 19px;
+  height: 46px;
+}
+
+.fb-select-trigger::after {
+  position: absolute;
+  right: 20px;
+  content: url(../images/shared/icon-arrow-down.svg);
+  transition: all 0.5s;
+}
+
+.open .fb-select-trigger::after {
+  transition: all 0.5s;
+  transform: rotate(180deg);
+}
+
+.options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--white);
+  transition: all 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.fb-dropdown.open .options {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.option {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px var(--lt-grey);
+  padding: 0 20px;
+  color: var(--grey);
+  cursor: pointer;
+  height: 48px;
+  transition: all 0.5s;
+}
+
+.option:hover {
+  cursor: pointer;
+  color: var(--purple);
+}
+
+.option:last-child {
+  border-bottom: none;
+}
+
+/* Feedback Detail */
+.fb-detail-input {
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  height: 56px;
+  background-color: var(--lt-grey);
+  color: var(--grey);
+  font-family: 'Jost', sans-serif;
+  font-size: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+.fb-detail-input:hover,
+.fb-detail-input:focus {
+  cursor: pointer;
+  border: 1px solid var(--sea-blue);
+  height: 54px;
+}
+
+/* Feedback footer */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-cancel {
+  width: 93px;
+  margin-right: 10px;
+}
+
+.modal-add {
+  width: 144px;
+}
+
+.fb-detail-input.alert,
+.fb-detail-input.alert:hover,
+.fb-detail-input.alert:focus {
+  border: 1px solid red;
+  height: 54px;
+}
+
+.fb-title-input.alert,
+.fb-title-input.alert:hover,
+.fb-title-input.alert:focus {
+  border: 1px solid red;
+  height: 46px;
+}
+
+.alert-text {
+  color: red;
 }

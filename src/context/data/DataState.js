@@ -46,8 +46,8 @@ const DataState = (props) => {
     }
 
     // Declare session storage data as an object
-    let curUser = JSON.parse(sessionStorage.getItem('curUser'));
-    let requests = JSON.parse(sessionStorage.getItem('requests'));
+    const curUser = JSON.parse(sessionStorage.getItem('curUser'));
+    const requests = JSON.parse(sessionStorage.getItem('requests'));
 
     dispatch({
       type: GET_DATA,
@@ -58,7 +58,7 @@ const DataState = (props) => {
 
   // Update active tag filter
   const updateActiveTag = (clickedTag) => {
-    let newTag = clickedTag;
+    const newTag = clickedTag;
 
     dispatch({
       type: UPDATE_TAG,
@@ -68,7 +68,7 @@ const DataState = (props) => {
 
   // Update sort by filter
   const updateSortByFilter = (clickedSortBy) => {
-    let newSortBy = clickedSortBy;
+    const newSortBy = clickedSortBy;
 
     dispatch({
       type: UPDATE_SORTBY,
@@ -79,7 +79,7 @@ const DataState = (props) => {
   // Update upvote value
   const updateUpvote = (curUpvoteVal, sugId, add) => {
     let curRequests = state.requests;
-    let reqIndex = curRequests.findIndex((req) => req.id === sugId);
+    const reqIndex = curRequests.findIndex((req) => req.id === sugId);
 
     // Find active request and change upvote value
     curRequests[reqIndex].upvotes = add ? curUpvoteVal + 1 : curUpvoteVal - 1;
@@ -87,7 +87,7 @@ const DataState = (props) => {
 
     // Set updated object in storage, and then parse to object
     sessionStorage.setItem('requests', JSON.stringify(curRequests));
-    let updatedRequests = JSON.parse(sessionStorage.getItem('requests'));
+    const updatedRequests = JSON.parse(sessionStorage.getItem('requests'));
 
     dispatch({
       type: UPDATE_UPVOTE,
@@ -97,7 +97,7 @@ const DataState = (props) => {
 
   // Change suggestion clicked status
   const suggCompClicked = (clickedRequest) => {
-    let newStatus = !state.suggClicked;
+    const newStatus = !state.suggClicked;
     setActiveRequest(clickedRequest, false);
 
     dispatch({
@@ -126,7 +126,7 @@ const DataState = (props) => {
   const addComment = (userComment) => {
     // Get current requests and active index
     let curRequests = state.requests;
-    let reqIndex = curRequests.findIndex(
+    const reqIndex = curRequests.findIndex(
       (req) => req.id === state.activeRequest.id
     );
 
@@ -134,7 +134,7 @@ const DataState = (props) => {
     let curComments = curRequests[reqIndex].comments
       ? curRequests[reqIndex].comments
       : [];
-    let newComment = {
+    const newComment = {
       id: state.commentsCount + 1,
       content: userComment,
       user: state.curUser,
@@ -149,7 +149,7 @@ const DataState = (props) => {
 
     // Set session storage and declare as JSON obj
     sessionStorage.setItem('requests', JSON.stringify(curRequests));
-    let updatedRequests = JSON.parse(sessionStorage.getItem('requests'));
+    const updatedRequests = JSON.parse(sessionStorage.getItem('requests'));
 
     dispatch({
       type: ADD_COMMENT,
@@ -159,7 +159,7 @@ const DataState = (props) => {
 
   // Update comment count
   const updateCommentCount = () => {
-    let newCommentsCount = state.commentsCount + 1;
+    const newCommentsCount = state.commentsCount + 1;
 
     dispatch({
       type: COMMENTS_COUNT,
@@ -169,37 +169,37 @@ const DataState = (props) => {
 
   // Add a reply
   const addReply = (userReply, commentId, userName) => {
-    // Get current requests, active request index
+    // Declare current requests and active request index
     let curRequests = state.requests;
-    let reqIndex = curRequests.findIndex(
+    const reqIndex = curRequests.findIndex(
       (req) => req.id === state.activeRequest.id
     );
 
-    // Get current request's comments and active comment
-    let curComments = curRequests[reqIndex].comments;
-    let commIndex = curComments.findIndex((comm) => comm.id === commentId);
+    // Declare current request's comments, current comment index, and active comment
+    const curComments = curRequests[reqIndex].comments;
+    const commIndex = curComments.findIndex((comm) => comm.id === commentId);
     let curComment = curComments[commIndex];
 
-    // Declare current replies array, declare new reply
+    // Declare current replies array and new reply object
     let curReplies = curComment.replies ? curComment.replies : [];
-    let newReply = {
+    const newReply = {
       content: userReply,
       replyingTo: userName,
       user: state.curUser,
     };
 
-    // Add to current replies array
+    // Add new reply to current replies array
     curReplies.push(newReply);
 
-    // Update replies of current comment
+    // Update replies array of of current comment
     curComment.replies = curReplies;
 
-    // Update comments of active request
+    // Update comments array of active request
     const newComments = curComments.map((comment) =>
       comment.id === commentId ? curComment : comment
     );
 
-    // Update requests
+    // Update requests with new comments array
     curRequests[reqIndex].comments = newComments;
 
     // Update active request
@@ -207,7 +207,7 @@ const DataState = (props) => {
 
     // Set session storage and declare as JSON obj
     sessionStorage.setItem('requests', JSON.stringify(curRequests));
-    let updatedRequests = JSON.parse(sessionStorage.getItem('requests'));
+    const updatedRequests = JSON.parse(sessionStorage.getItem('requests'));
 
     dispatch({
       type: ADD_REPLY,
