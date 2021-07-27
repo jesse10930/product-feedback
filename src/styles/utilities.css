@@ -3,7 +3,7 @@
 /* General */
 .main-app {
   max-width: 1080px;
-  padding: 4rem 1.5rem;
+  padding: 3.5rem 1.5rem;
   margin: auto;
 }
 
@@ -390,6 +390,10 @@
   width: 325px;
 }
 
+.empty-div {
+  width: 325px;
+}
+
 .req-cards-title {
   margin: 48px 0 32px 0;
 }
@@ -586,6 +590,7 @@
 
 /* Reply Input */
 .add-rep-cont {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -848,6 +853,19 @@
   height: 46px;
 }
 
+.reply-input.alert,
+.reply-input.alert:hover,
+.reply-input.alert:focus {
+  border: 1px solid red;
+  height: 68px;
+}
+
 .alert-text {
   color: red;
+}
+
+.reply-alert {
+  position: absolute;
+  top: 120px;
+  left: 5px;
 }

@@ -228,7 +228,7 @@ const DataState = (props) => {
     const newFeedbackObj = {
       id: newId,
       title: newTitle,
-      category: newCategory,
+      category: newCategory.toLowerCase(),
       upvotes: 0,
       status: 'suggestion',
       description: newDescription,

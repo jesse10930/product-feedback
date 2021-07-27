@@ -8,6 +8,7 @@ const ReplyInput = ({ id, onReplyClick, userName }) => {
 
   // Declare comp level state
   const [userReply, setUserReply] = useState('');
+  const [alert, setAlert] = useState(false);
 
   // On Reply change
   const userReplyChange = (e) => {
@@ -18,9 +19,16 @@ const ReplyInput = ({ id, onReplyClick, userName }) => {
   // On form submition
   const onPostReplyClick = (e) => {
     e.preventDefault();
-    onReplyClick();
-    addReply(userReply, id, userName);
-    setUserReply('');
+    if (userReply.length === 0) {
+      let newAlert = true;
+      setAlert(newAlert);
+    } else {
+      let newAlert = false;
+      onReplyClick();
+      addReply(userReply, id, userName);
+      setUserReply('');
+      setAlert(newAlert);
+    }
   };
 
   return (
@@ -30,19 +38,18 @@ const ReplyInput = ({ id, onReplyClick, userName }) => {
       onSubmit={onPostReplyClick}
     >
       <textarea
-        className='reply-input'
         name='userReply'
+        className={alert ? 'reply-input alert' : 'reply-input'}
         placeholder='Type your reply here'
         value={userReply}
         onChange={userReplyChange}
       />
+      <p className={alert ? 'alert-text body3 reply-alert' : 'hide'}>
+        Can't leave any fields empty
+      </p>
       <input
         type='submit'
-        className={
-          userReply.length > 0
-            ? 'btn1 header4 post-rep-btn'
-            : 'btn1 header4 post-rep-btn disabled'
-        }
+        className='btn1 header4 post-rep-btn'
         value='Post Reply'
       ></input>
     </form>

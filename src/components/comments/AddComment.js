@@ -9,6 +9,7 @@ const AddComment = () => {
   // Declare comp level state
   const [chars, setChars] = useState(250);
   const [userComment, setUserComment] = useState('');
+  const [alert, setAlert] = useState(false);
 
   // On comment change
   const userCommentChange = (e) => {
@@ -24,9 +25,16 @@ const AddComment = () => {
   // On form submition
   const onPostClick = (e) => {
     e.preventDefault();
-    addComment(userComment);
-    setUserComment('');
-    setChars(250);
+    if (userComment.length === 0) {
+      let newAlert = true;
+      setAlert(newAlert);
+    } else {
+      let newAlert = false;
+      addComment(userComment);
+      setAlert(newAlert);
+      setUserComment('');
+      setChars(250);
+    }
   };
 
   return (
@@ -37,19 +45,21 @@ const AddComment = () => {
       <textarea
         id='comment-input'
         name='userComment'
+        className={alert ? 'alert' : ''}
         placeholder='Type your comment here'
         value={userComment}
         onChange={userCommentChange}
       />
+      <p className={alert ? 'alert-text body3' : 'hide'}>
+        Can't leave any fields empty
+      </p>
       <div id='add-com-bot'>
         <p id='chars-left' className='body2'>
           {chars} Characters Left
         </p>
         <input
           type='submit'
-          className={
-            userComment.length > 0 ? 'btn1 header4' : 'btn1 header4 disabled'
-          }
+          className='btn1 header4'
           value='Post Comment'
         ></input>
       </div>

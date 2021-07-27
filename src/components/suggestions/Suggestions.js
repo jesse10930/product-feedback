@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
 import Suggestion from './Suggestion';
+import NewModal from '../modals/NewModal';
 import DataContext from '../../context/data/dataContext';
 
 const Suggestions = () => {
@@ -9,6 +10,7 @@ const Suggestions = () => {
 
   // Declare component level state
   const [run, setRun] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   // Effect to load suggestions before empty image flashes
   useEffect(() => {
@@ -17,7 +19,26 @@ const Suggestions = () => {
     }, 250);
   }, []);
 
-  if (run && requests.length === 0) {
+  // Declare requests that are suggestions
+  let suggestionsObj = requests.filter(
+    (request) => request['status'] === 'suggestion'
+  );
+
+  // On add feedback button click
+  const onAddFeedbackClick = () => {
+    let htmlDiv = document.getElementsByTagName('HTML')[0];
+    htmlDiv.style.overflow = 'hidden';
+    setShowModal(true);
+  };
+
+  // On modal go back click
+  const onGoBackClick = () => {
+    let htmlDiv = document.getElementsByTagName('HTML')[0];
+    htmlDiv.style.overflow = 'scroll';
+    setShowModal(false);
+  };
+
+  if (run && suggestionsObj.length === 0) {
     // No suggestions element
     const noSuggestionsElement = (
       <Fragment>
@@ -132,7 +153,7 @@ const Suggestions = () => {
             Got a suggestion? Found a bug that needs to be squashed? We love
             hearing about new ideas to improve our app!
           </p>
-          <button className='btn1 header4'>
+          <button className='btn1 header4' onClick={onAddFeedbackClick}>
             <svg width='9' height='9' xmlns='http://www.w3.org/2000/svg'>
               <text
                 transform='translate(-24 -20)'
@@ -153,15 +174,18 @@ const Suggestions = () => {
       </Fragment>
     );
 
-    return <div id='all-suggs'>{noSuggestionsElement}</div>;
-  } else {
-    // Declare requests that are suggestions
-    let suggestionsObj = requests.filter(
-      (request) => request['status'] === 'suggestion'
+    return (
+      <Fragment>
+        {showModal ? (
+          <NewModal onGoBackClick={onGoBackClick} />
+        ) : (
+          <div id='all-suggs'>{noSuggestionsElement}</div>
+        )}{' '}
+      </Fragment>
     );
-
+  } else {
     // Declare filterd suggestions for category filter
-    let lowerCaseTag = activeTag.charAt(0).toLowerCase() + activeTag.slice(1);
+    let lowerCaseTag = activeTag.toLowerCase();
 
     let filtered =
       activeTag === 'All'

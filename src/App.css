@@ -245,6 +245,13 @@ body {
   height: 68px;
 }
 
+#comment-input.alert,
+#comment-input.alert:hover,
+#comment-input.alert:focus {
+  border: 1px solid red;
+  height: 68px;
+}
+
 #add-com-bot {
   display: flex;
   justify-content: space-between;

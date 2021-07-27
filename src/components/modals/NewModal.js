@@ -56,17 +56,6 @@ const NewModal = ({ onGoBackClick }) => {
     onGoBackClick();
   };
 
-  // const onAddFeedbackClick = (e) => {
-  //   e.preventDefault();
-  //   if (feedbackTitle.length === 0 || feedbackDetail.length === 0) {
-  //     let newAlert = true;
-  //     setAlert(newAlert);
-  //   } else {
-  //     addFeedback(feedbackTitle, activeCategory, feedbackDetail);
-  //     onGoBackClick();
-  //   }
-  // };
-
   // On add feedback click
   const onAddFeedbackClick = (e) => {
     e.preventDefault();

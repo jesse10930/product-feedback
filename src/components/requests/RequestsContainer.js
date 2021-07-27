@@ -12,23 +12,30 @@ const RequestsContainer = ({ plannedArr, inProgressArr, liveArr }) => {
     live: 'Released features',
   };
 
-  return reqArrs.map((reqArr, i) => (
-    <div className='req-cards-container' key={i}>
-      <div className='req-cards-title'>
-        <h3 className='title-bold header3'>
-          {reqArrs[0].length > 0
-            ? reqArr[0].status.charAt(0).toUpperCase() +
-              reqArr[0].status.slice(1)
-            : ''}{' '}
-          ({reqArr.length})
-        </h3>
-        <p className='title-small body1'>{titleMsgs[reqArr[0].status]}</p>
+  return reqArrs.map((reqArr, i) =>
+    reqArr.length === 0 ? (
+      <div
+        className='empty-div invisible'
+        key={Math.floor(Math.random() * 1000)}
+      ></div>
+    ) : (
+      <div className='req-cards-container' key={i}>
+        <div className='req-cards-title'>
+          <h3 className='title-bold header3'>
+            {reqArrs[0].length > 0
+              ? reqArr[0].status.charAt(0).toUpperCase() +
+                reqArr[0].status.slice(1)
+              : ''}{' '}
+            ({reqArr.length})
+          </h3>
+          <p className='title-small body1'>{titleMsgs[reqArr[0].status]}</p>
+        </div>
+        {reqArr.map((reqItem, j) => (
+          <RequestCard reqItem={reqItem} key={j} />
+        ))}
       </div>
-      {reqArr.map((reqItem, j) => (
-        <RequestCard reqItem={reqItem} key={j} />
-      ))}
-    </div>
-  ));
+    )
+  );
 };
 
 export default RequestsContainer;

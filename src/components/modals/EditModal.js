@@ -78,6 +78,8 @@ const EditModal = ({
   // On delete click
   const onDeleteClick = (e) => {
     e.preventDefault();
+    let htmlDiv = document.getElementsByTagName('HTML')[0];
+    htmlDiv.style.overflow = 'scroll';
     deleteFeedback(id);
   };
 
