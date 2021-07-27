@@ -11,6 +11,9 @@ import {
   SET_ACTIVEREQ,
   COMMENTS_COUNT,
   ADD_REPLY,
+  ADD_FEEDBACK,
+  DELETE_FEEDBACK,
+  EDIT_FEEDBACK,
 } from '../types';
 
 const DataState = (props) => {
@@ -215,6 +218,90 @@ const DataState = (props) => {
     });
   };
 
+  // Add new feedback
+  const addFeedback = (newTitle, newCategory, newDescription) => {
+    // Declare current requests and get length of array
+    let curRequests = state.requests;
+    const newId = curRequests[curRequests.length - 1].id + 1;
+
+    // Build new feedback object
+    const newFeedbackObj = {
+      id: newId,
+      title: newTitle,
+      category: newCategory,
+      upvotes: 0,
+      status: 'suggestion',
+      description: newDescription,
+    };
+
+    // Push new feedback to current requests array
+    curRequests.push(newFeedbackObj);
+
+    // Store new requests array in session storage and declare as JSON obj
+    sessionStorage.setItem('requests', JSON.stringify(curRequests));
+    const updatedRequests = JSON.parse(sessionStorage.getItem('requests'));
+
+    dispatch({
+      type: ADD_FEEDBACK,
+      payload: updatedRequests,
+    });
+  };
+
+  // Delete feedback
+  const deleteFeedback = (requestId) => {
+    // Declare current requests array
+    const curRequests = state.requests;
+
+    // Declare new requests array filtering out the current id
+    const newRequests = curRequests.filter(
+      (request) => request.id !== requestId
+    );
+
+    // Store new requests array in session storage and declare as JSON obj
+    sessionStorage.setItem('requests', JSON.stringify(newRequests));
+    const updatedRequests = JSON.parse(sessionStorage.getItem('requests'));
+
+    // Return to home/roadmap page
+    suggCompClicked();
+
+    dispatch({
+      type: DELETE_FEEDBACK,
+      payload: updatedRequests,
+    });
+  };
+
+  // Edit feedback
+  const editFeedback = (
+    reqId,
+    newTitle,
+    newCategory,
+    newStatus,
+    newDescription
+  ) => {
+    // Declare current requests array
+    let curRequests = state.requests;
+
+    // Loop through array to find active request
+    for (let i = 0; i < curRequests.length; i++) {
+      if (curRequests[i].id === reqId) {
+        curRequests[i].title = newTitle;
+        curRequests[i].category = newCategory.toLowerCase();
+        curRequests[i].status = newStatus.toLowerCase();
+        curRequests[i].description = newDescription;
+        break;
+      }
+    }
+
+    // Store new requests array in session storage and declare as JSON obj
+    sessionStorage.setItem('requests', JSON.stringify(curRequests));
+    const updatedRequests = JSON.parse(sessionStorage.getItem('requests'));
+
+    dispatch({
+      type: EDIT_FEEDBACK,
+      payload: updatedRequests,
+    });
+  };
+
   return (
     <DataContext.Provider
       value={{
@@ -234,6 +321,9 @@ const DataState = (props) => {
         setActiveRequest,
         updateCommentCount,
         addReply,
+        addFeedback,
+        deleteFeedback,
+        editFeedback,
       }}
     >
       {props.children}

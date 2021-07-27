@@ -638,10 +638,11 @@
 
 .modal-icon {
   position: absolute;
-  top: 78px;
+  top: -28px;
 }
 
 .modal-body {
+  position: relative;
   height: 527px;
   width: 456px;
   margin-top: 50px;
@@ -651,6 +652,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.modal-body-edit {
+  height: 577px;
+  margin-top: 30px;
 }
 
 .modal-bold {
@@ -754,6 +760,7 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  z-index: 100;
 }
 
 .fb-dropdown.open .options {
@@ -812,12 +819,18 @@
   justify-content: flex-end;
 }
 
+.modal-delete {
+  width: 93px;
+  margin-right: auto;
+}
+
 .modal-cancel {
   width: 93px;
   margin-right: 10px;
 }
 
-.modal-add {
+.modal-add,
+.modal-save {
   width: 144px;
 }
 

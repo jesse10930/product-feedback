@@ -1,12 +1,18 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useContext } from 'react';
+import DataContext from '../../context/data/dataContext';
 
 const NewModal = ({ onGoBackClick }) => {
+  // Declare and destructure context
+  const dataContext = useContext(DataContext);
+  const { addFeedback } = dataContext;
+
   // Declare comp level state
   const [activeCategory, setActiveCategory] = useState('Feature');
   const [open, setOpen] = useState(false);
   const [feedbackTitle, setFeedbackTitle] = useState('');
   const [feedbackDetail, setFeedbackDetail] = useState('');
-  const [alert, setAlert] = useState(false);
+  const [titleAlert, setTitleAlert] = useState(false);
+  const [descAlert, setDescAlert] = useState(false);
 
   // Check mark markup
   const checkMark = (
@@ -50,13 +56,38 @@ const NewModal = ({ onGoBackClick }) => {
     onGoBackClick();
   };
 
+  // const onAddFeedbackClick = (e) => {
+  //   e.preventDefault();
+  //   if (feedbackTitle.length === 0 || feedbackDetail.length === 0) {
+  //     let newAlert = true;
+  //     setAlert(newAlert);
+  //   } else {
+  //     addFeedback(feedbackTitle, activeCategory, feedbackDetail);
+  //     onGoBackClick();
+  //   }
+  // };
+
+  // On add feedback click
   const onAddFeedbackClick = (e) => {
     e.preventDefault();
-    if (activeCategory.length === 0 || feedbackDetail.length === 0) {
-      let newAlert = true;
-      setAlert(newAlert);
+    if (feedbackTitle.length === 0 && feedbackDetail.length === 0) {
+      let newTitleAlert = true;
+      let newDescAlert = true;
+      setTitleAlert(newTitleAlert);
+      setDescAlert(newDescAlert);
+    } else if (feedbackTitle.length === 0) {
+      let newTitleAlert = true;
+      let newDescAlert = false;
+      setTitleAlert(newTitleAlert);
+      setDescAlert(newDescAlert);
+    } else if (feedbackDetail.length === 0) {
+      let newTitleAlert = false;
+      let newDescAlert = true;
+      setTitleAlert(newTitleAlert);
+      setDescAlert(newDescAlert);
     } else {
-      console.log(activeCategory, feedbackTitle, feedbackDetail);
+      addFeedback(feedbackTitle, activeCategory, feedbackDetail);
+      onGoBackClick();
     }
   };
 
@@ -115,7 +146,7 @@ const NewModal = ({ onGoBackClick }) => {
             </p>
             <input
               type='text'
-              className={alert ? 'fb-title-input alert' : 'fb-title-input'}
+              className={titleAlert ? 'fb-title-input alert' : 'fb-title-input'}
               value={feedbackTitle}
               onChange={onTitleChange}
             />
@@ -173,12 +204,18 @@ const NewModal = ({ onGoBackClick }) => {
               etc.
             </p>
             <textarea
-              className={alert ? 'fb-detail-input alert' : 'fb-detail-input'}
+              className={
+                descAlert ? 'fb-detail-input alert' : 'fb-detail-input'
+              }
               value={feedbackDetail}
               onChange={onDetailChange}
             />
           </div>
-          <p className={alert ? 'alert-text body3' : 'invisible'}>
+          <p
+            className={
+              titleAlert || descAlert ? 'alert-text body3' : 'invisible'
+            }
+          >
             Can't leave any fields empty
           </p>
           <div className='modal-footer'>

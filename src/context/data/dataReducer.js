@@ -8,6 +8,9 @@ import {
   SET_ACTIVEREQ,
   COMMENTS_COUNT,
   ADD_REPLY,
+  ADD_FEEDBACK,
+  DELETE_FEEDBACK,
+  EDIT_FEEDBACK,
 } from '../types';
 
 const dataReducer = (state, action) => {
@@ -54,6 +57,21 @@ const dataReducer = (state, action) => {
         requests: action.payload,
       };
     case ADD_REPLY:
+      return {
+        ...state,
+        requests: action.payload,
+      };
+    case ADD_FEEDBACK:
+      return {
+        ...state,
+        requests: action.payload,
+      };
+    case DELETE_FEEDBACK:
+      return {
+        ...state,
+        requests: action.payload,
+      };
+    case EDIT_FEEDBACK:
       return {
         ...state,
         requests: action.payload,

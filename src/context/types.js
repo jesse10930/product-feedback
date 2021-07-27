@@ -7,3 +7,6 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const SET_ACTIVEREQ = 'SET_ACTIVEREQ';
 export const COMMENTS_COUNT = 'COMMENTS_COUNT';
 export const ADD_REPLY = 'ADD_REPLY';
+export const ADD_FEEDBACK = 'ADD_FEEDBACK';
+export const DELETE_FEEDBACK = 'DELETE_FEEDBACK';
+export const EDIT_FEEDBACK = 'EDIT_FEEDBACK';
