@@ -22,7 +22,10 @@ const RequestCard = ({ reqItem }) => {
   let commentCount = comments ? comments.length : 0;
 
   // Capitalize category
-  let capCategory = category.charAt(0).toUpperCase() + category.slice(1);
+  let capCategory =
+    category.length === 2
+      ? category.toUpperCase()
+      : category.charAt(0).toUpperCase() + category.slice(1);
 
   // Capitalize status
   let capStatus = status.charAt(0).toUpperCase() + status.slice(1);

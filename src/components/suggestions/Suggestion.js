@@ -14,7 +14,10 @@ const Suggestion = ({ suggestionItem }) => {
   let commentsCount = comments ? comments.length : 0;
 
   // Capitalize category
-  let capCategory = category.charAt(0).toUpperCase() + category.slice(1);
+  let capCategory =
+    category.length === 2
+      ? category.toUpperCase()
+      : category.charAt(0).toUpperCase() + category.slice(1);
 
   // On up vote click
   const onUpVoteClick = (e) => {

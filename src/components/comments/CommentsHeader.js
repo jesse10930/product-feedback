@@ -59,6 +59,12 @@ const CommentsHeader = ({ count, category, reqObj, updateUpvote }) => {
       ? 'In-Progress'
       : reqObj.status.charAt(0).toUpperCase() + reqObj.status.slice(1);
 
+  // Capitalize category
+  const capCategory =
+    category.length === 2
+      ? category.toUpperCase()
+      : category.charAt(0).toUpperCase() + category.slice(1);
+
   return (
     <Fragment>
       {showModal ? (
@@ -66,7 +72,7 @@ const CommentsHeader = ({ count, category, reqObj, updateUpvote }) => {
           onGoBackClick={onGoBackClick}
           title={title}
           description={description}
-          category={category}
+          category={capCategory}
           status={capStatus}
           id={id}
         />
@@ -115,7 +121,7 @@ const CommentsHeader = ({ count, category, reqObj, updateUpvote }) => {
               <h3 className='header3 sug-title'>{title}</h3>
               <p className='body1 sug-desc'>{description}</p>
               <div>
-                <div className='non-tag header4'>{category}</div>
+                <div className='non-tag header4'>{capCategory}</div>
               </div>
             </div>
             <div className='comments-n-num'>
