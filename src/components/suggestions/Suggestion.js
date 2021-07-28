@@ -32,7 +32,7 @@ const Suggestion = ({ suggestionItem }) => {
   };
 
   // On suggestion click
-  const callSuggCompClicked = (e) => {
+  const callSuggCompClicked = () => {
     let clickedSuggItem = suggestionItem;
     suggCompClicked(clickedSuggItem);
   };

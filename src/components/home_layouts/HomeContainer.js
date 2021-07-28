@@ -1,6 +1,6 @@
 import React from 'react';
-import Suggestions from '../suggestions/Suggestions';
 import Header from './Header';
+import Suggestions from '../suggestions/Suggestions';
 
 const SuggestionsContainer = () => {
   return (

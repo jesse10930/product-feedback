@@ -186,13 +186,12 @@ const Suggestions = () => {
   } else {
     // Declare filterd suggestions for category filter
     let lowerCaseTag = activeTag.toLowerCase();
-
     let filtered =
       activeTag === 'All'
         ? suggestionsObj
         : suggestionsObj.filter((sug) => sug['category'] === lowerCaseTag);
 
-    // Sort filtered suggestions
+    // Sort filtered suggestions by sort by category
     switch (sortByFilter) {
       case 'Most Upvotes':
         filtered.sort((a, b) =>

@@ -14,7 +14,7 @@ const NewModal = ({ onGoBackClick }) => {
   const [titleAlert, setTitleAlert] = useState(false);
   const [descAlert, setDescAlert] = useState(false);
 
-  // Check mark markup
+  // Checkmark markup
   const checkMark = (
     <svg xmlns='http://www.w3.org/2000/svg' width='13' height='11'>
       <path

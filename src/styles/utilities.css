@@ -266,7 +266,7 @@
   cursor: pointer;
 }
 
-/* Dropdown */
+/* Sort By Dropdown */
 .dropdown-container {
   display: flex;
   flex-direction: column;
@@ -306,7 +306,7 @@
   border-bottom: none;
 }
 
-/* Suggestion Bubble */
+/* Suggestion Component */
 .suggestion-component {
   width: 100%;
   padding: 28px 0;
@@ -372,15 +372,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-/* Show/hide elements */
-.hide {
-  display: none;
-}
-
-.invisible {
-  visibility: hidden;
 }
 
 /* Planned/InProg/Live Cards Container */
@@ -544,6 +535,7 @@
   color: var(--grey);
 }
 
+/* Reply */
 .reply {
   border: none;
   outline: none;
@@ -708,7 +700,7 @@
   height: 46px;
 }
 
-/* Dropdown */
+/* Category Dropdown */
 .fb-dropdown-wrapper {
   position: relative;
   user-select: none;
@@ -839,6 +831,8 @@
   width: 144px;
 }
 
+/* Alert state */
+
 .fb-detail-input.alert,
 .fb-detail-input.alert:hover,
 .fb-detail-input.alert:focus {
@@ -868,4 +862,13 @@
   position: absolute;
   top: 120px;
   left: 5px;
+}
+
+/* Show/hide elements */
+.hide {
+  display: none;
+}
+
+.invisible {
+  visibility: hidden;
 }

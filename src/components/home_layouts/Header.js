@@ -1,6 +1,6 @@
 import React, { useState, useContext, Fragment } from 'react';
-import DataContext from '../../context/data/dataContext';
 import NewModal from '../modals/NewModal';
+import DataContext from '../../context/data/dataContext';
 
 const Header = () => {
   // Declare and destructure context
@@ -50,6 +50,17 @@ const Header = () => {
     setShowModal(false);
   };
 
+  const checkMark = (
+    <svg xmlns='http://www.w3.org/2000/svg' width='13' height='11'>
+      <path
+        fill='none'
+        stroke='#AD1FEA'
+        strokeWidth='2'
+        d='M1 5.233L4.522 9 12 1'
+      />
+    </svg>
+  );
+
   return (
     <Fragment>
       {showModal ? (
@@ -70,27 +81,15 @@ const Header = () => {
             <button className='sort-by' onClick={onSortByClick}>
               <p className='body3'>Sort by:</p>
               <h4 className='header4'>{sortByFilter}</h4>
-              {hide ? (
-                <svg width='10' height='7' xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    d='M1 1l4 4 4-4'
-                    stroke='#ffffff'
-                    strokeWidth='2'
-                    fill='none'
-                    fillRule='evenodd'
-                  />
-                </svg>
-              ) : (
-                <svg width='10' height='7' xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    d='M1 6l4-4 4 4'
-                    stroke='#ffffff'
-                    strokeWidth='2'
-                    fill='none'
-                    fillRule='evenodd'
-                  />
-                </svg>
-              )}
+              <svg width='10' height='7' xmlns='http://www.w3.org/2000/svg'>
+                <path
+                  d={hide ? 'M1 1l4 4 4-4' : 'M1 6l4-4 4 4'}
+                  stroke='#ffffff'
+                  strokeWidth='2'
+                  fill='none'
+                  fillRule='evenodd'
+                />
+              </svg>
             </button>
             <div
               className={
@@ -103,19 +102,11 @@ const Header = () => {
                 onClick={onSortByOptionClick}
               >
                 <p className='body1'>Most Upvotes</p>
-                <svg
+                <div
                   className={sortByFilter === 'Most Upvotes' ? '' : 'invisible'}
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='13'
-                  height='11'
                 >
-                  <path
-                    fill='none'
-                    stroke='#AD1FEA'
-                    strokeWidth='2'
-                    d='M1 5.233L4.522 9 12 1'
-                  />
-                </svg>
+                  {checkMark}
+                </div>
               </button>
               <button
                 className='dropdown-text'
@@ -123,21 +114,13 @@ const Header = () => {
                 onClick={onSortByOptionClick}
               >
                 <p className='body1'>Least Upvotes</p>
-                <svg
+                <div
                   className={
                     sortByFilter === 'Least Upvotes' ? '' : 'invisible'
                   }
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='13'
-                  height='11'
                 >
-                  <path
-                    fill='none'
-                    stroke='#AD1FEA'
-                    strokeWidth='2'
-                    d='M1 5.233L4.522 9 12 1'
-                  />
-                </svg>
+                  {checkMark}
+                </div>
               </button>
               <button
                 className='dropdown-text'
@@ -145,21 +128,13 @@ const Header = () => {
                 onClick={onSortByOptionClick}
               >
                 <p className='body1'>Most Comments</p>
-                <svg
+                <div
                   className={
                     sortByFilter === 'Most Comments' ? '' : 'invisible'
                   }
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='13'
-                  height='11'
                 >
-                  <path
-                    fill='none'
-                    stroke='#AD1FEA'
-                    strokeWidth='2'
-                    d='M1 5.233L4.522 9 12 1'
-                  />
-                </svg>
+                  {checkMark}
+                </div>
               </button>
               <button
                 className='dropdown-text'
@@ -167,21 +142,13 @@ const Header = () => {
                 onClick={onSortByOptionClick}
               >
                 <p className='body1'>Least Comments</p>
-                <svg
+                <div
                   className={
                     sortByFilter === 'Least Comments' ? '' : 'invisible'
                   }
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='13'
-                  height='11'
                 >
-                  <path
-                    fill='none'
-                    stroke='#AD1FEA'
-                    strokeWidth='2'
-                    d='M1 5.233L4.522 9 12 1'
-                  />
-                </svg>
+                  {checkMark}
+                </div>
               </button>
             </div>
           </div>

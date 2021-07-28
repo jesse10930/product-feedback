@@ -37,10 +37,12 @@ const DataState = (props) => {
     ) {
       const data = require('../../data.json');
 
+      // Give each object a key of 'active' set to false
       for (let i = 0; i < data['productRequests'].length; i++) {
         data['productRequests'][i]['active'] = false;
       }
 
+      // Store object to session storage
       sessionStorage.setItem('curUser', JSON.stringify(data['currentUser']));
       sessionStorage.setItem(
         'requests',
@@ -81,6 +83,7 @@ const DataState = (props) => {
 
   // Update upvote value
   const updateUpvote = (curUpvoteVal, sugId, add) => {
+    // Declare current requests and find active request's index
     let curRequests = state.requests;
     const reqIndex = curRequests.findIndex((req) => req.id === sugId);
 
@@ -113,6 +116,7 @@ const DataState = (props) => {
   const setActiveRequest = (clickedRequest, comment) => {
     let newActiveRequest;
 
+    // Declare new active request as empty array or the request that was clicked/updated by a comment
     if (!comment) {
       newActiveRequest = state.suggClicked ? [] : clickedRequest;
     } else {
@@ -127,13 +131,13 @@ const DataState = (props) => {
 
   // Add a comment
   const addComment = (userComment) => {
-    // Get current requests and active index
+    // Get current requests and active request index
     let curRequests = state.requests;
     const reqIndex = curRequests.findIndex(
       (req) => req.id === state.activeRequest.id
     );
 
-    // Get current comments for active request, declare and store new comments array
+    // Get current comments for active request, declare new comment object and store in current comments array
     let curComments = curRequests[reqIndex].comments
       ? curRequests[reqIndex].comments
       : [];
@@ -194,7 +198,7 @@ const DataState = (props) => {
     // Add new reply to current replies array
     curReplies.push(newReply);
 
-    // Update replies array of of current comment
+    // Update replies array of current comment
     curComment.replies = curReplies;
 
     // Update comments array of active request
@@ -220,11 +224,11 @@ const DataState = (props) => {
 
   // Add new feedback
   const addFeedback = (newTitle, newCategory, newDescription) => {
-    // Declare current requests and get length of array
+    // Declare current requests and length of array
     let curRequests = state.requests;
     const newId = curRequests[curRequests.length - 1].id + 1;
 
-    // Build new feedback object
+    // Declare new feedback object
     const newFeedbackObj = {
       id: newId,
       title: newTitle,
@@ -232,6 +236,7 @@ const DataState = (props) => {
       upvotes: 0,
       status: 'suggestion',
       description: newDescription,
+      active: false,
     };
 
     // Push new feedback to current requests array
@@ -281,7 +286,7 @@ const DataState = (props) => {
     // Declare current requests array
     let curRequests = state.requests;
 
-    // Loop through array to find active request
+    // Loop through array to find active request, and update
     for (let i = 0; i < curRequests.length; i++) {
       if (curRequests[i].id === reqId) {
         curRequests[i].title = newTitle;
