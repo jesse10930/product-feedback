@@ -11,7 +11,7 @@ const App = () => {
       <main className='main-app'>
         <DataState>
           <Switch>
-            <Route exact path='/home' component={Home} />
+            <Route exact path='/' component={Home} />
             <Route exact path='/roadmappage' component={RoadmapPage} />
           </Switch>
         </DataState>
