@@ -1,10 +1,15 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NewModal from '../modals/NewModal';
 
 const RoadmapHeader = () => {
   // Declare comp level state
   const [showModal, setShowModal] = useState(false);
+
+  // Effect to set page location
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   // On add feedback button click
   const onAddFeedbackClick = () => {

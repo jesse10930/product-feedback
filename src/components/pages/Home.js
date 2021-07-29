@@ -9,6 +9,11 @@ const Home = () => {
   const dataContext = useContext(DataContext);
   const { suggClicked } = dataContext;
 
+  // // Effect to set page location
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // });
+
   return (
     <Fragment>
       {!suggClicked ? (

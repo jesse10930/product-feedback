@@ -1,4 +1,4 @@
-import React, { useState, useContext, Fragment } from 'react';
+import React, { useState, useContext, useEffect, Fragment } from 'react';
 import NewModal from '../modals/NewModal';
 import DataContext from '../../context/data/dataContext';
 
@@ -6,6 +6,11 @@ const Header = () => {
   // Declare and destructure context
   const dataContext = useContext(DataContext);
   const { requests, sortByFilter, updateSortByFilter } = dataContext;
+
+  // Effect to set page location
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   // Declare component level state
   const [hide, setHide] = useState(true);

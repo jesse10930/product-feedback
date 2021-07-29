@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import CommentsHeader from './CommentsHeader';
 import CommentsContainer from './CommentsContainer';
 import AddComment from './AddComment';
@@ -11,6 +11,12 @@ const CommentsComponent = () => {
 
   // Descturcutre active request from context
   const { category, comments } = activeRequest;
+
+  // Scroll to top on initial load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    // eslint-disable-next-line
+  }, []);
 
   // Declare comments count
   let commentsCount = comments ? comments.length : 0;

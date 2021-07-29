@@ -2,8 +2,18 @@ import React from 'react';
 import RequestCard from './RequestCard';
 
 const RequestsContainer = ({ plannedArr, inProgressArr, liveArr }) => {
-  // Declare props into an array
-  let reqArrs = [plannedArr, inProgressArr, liveArr];
+  // Declare props into an array, sorted by upvotes
+  let reqArrs = [
+    plannedArr.sort((a, b) =>
+      !a.upvotes || !b.upvotes ? 1 : b.upvotes - a.upvotes
+    ),
+    inProgressArr.sort((a, b) =>
+      !a.upvotes || !b.upvotes ? 1 : b.upvotes - a.upvotes
+    ),
+    liveArr.sort((a, b) =>
+      !a.upvotes || !b.upvotes ? 1 : b.upvotes - a.upvotes
+    ),
+  ];
 
   // Declare title messages
   let titleMsgs = {
