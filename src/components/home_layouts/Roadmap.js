@@ -1,17 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import DataContext from '../../context/data/dataContext';
 
 const Roadmap = () => {
   // Declare and destructure context
   const dataContext = useContext(DataContext);
-  const { requests, getData } = dataContext;
-
-  // Effect to get data on initial load
-  useEffect(() => {
-    getData();
-    // eslint-disable-next-line
-  }, []);
+  const { requests } = dataContext;
 
   // Get counts for statuses
   let planCount = 0,

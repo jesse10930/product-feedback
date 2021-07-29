@@ -7,14 +7,14 @@ const Header = () => {
   const dataContext = useContext(DataContext);
   const { requests, sortByFilter, updateSortByFilter } = dataContext;
 
+  // Declare component level state
+  const [hide, setHide] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+
   // Effect to set page location
   useEffect(() => {
     window.scrollTo(0, 0);
   });
-
-  // Declare component level state
-  const [hide, setHide] = useState(true);
-  const [showModal, setShowModal] = useState(false);
 
   // Get suggestion count
   let suggCount = 0;
