@@ -6,10 +6,11 @@ const RoadmapHeader = () => {
   // Declare comp level state
   const [showModal, setShowModal] = useState(false);
 
-  // Effect to set page location
+  // Scroll to top on initial load
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+    // eslint-disable-next-line
+  }, []);
 
   // On add feedback button click
   const onAddFeedbackClick = () => {

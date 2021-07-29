@@ -11,10 +11,11 @@ const Header = () => {
   const [hide, setHide] = useState(true);
   const [showModal, setShowModal] = useState(false);
 
-  // Effect to set page location
+  // Scroll to top on initial load
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+    // eslint-disable-next-line
+  }, []);
 
   // Get suggestion count
   let suggCount = 0;
