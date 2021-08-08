@@ -261,3 +261,160 @@ body {
 #chars-left {
   color: var(--grey);
 }
+
+/* Tablet Media Queries */
+@media (max-width: 800px) {
+  html {
+    min-width: 200px;
+    width: 95%;
+    margin: auto;
+  }
+
+  #sidebar-sugg-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #side-bar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  #fem-banner {
+    height: 138px;
+    width: 25%;
+    margin: 0px;
+  }
+
+  #tags-container {
+    height: 138px;
+    width: 25%;
+    margin: 0px;
+  }
+
+  #roadmap-container {
+    height: 138px;
+    width: 25%;
+    margin: 0px;
+  }
+
+  #sugg-comms-cont {
+    width: auto;
+  }
+
+  .modal-container {
+    align-items: flex-start;
+    padding-top: 100px;
+  }
+
+  #roadmap-page {
+    min-width: 200px;
+  }
+
+  .req-cards-container {
+    width: 32%;
+  }
+
+  .suggestion-component {
+    padding: 28px 0;
+  }
+
+  .suggestion-component:hover {
+    border: none;
+    padding: 28px 0;
+  }
+}
+
+/* Cell Phone Media Queries */
+@media (max-width: 500px) {
+  html,
+  body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-app {
+    padding: 2.5rem 1.5rem;
+  }
+
+  #side-bar-container {
+    display: none;
+  }
+
+  #header-container > svg {
+    display: none;
+  }
+
+  #header-container > h3 {
+    display: none;
+  }
+
+  #header-container > * {
+    margin: 0;
+  }
+
+  #header-container {
+    position: absolute;
+    justify-content: space-around;
+    top: 0;
+    left: 0;
+    border-radius: 0px;
+    padding: 0;
+    margin: 0;
+    height: 56px;
+    width: 100%;
+  }
+
+  #empty-sugg-desc {
+    width: 80%;
+  }
+
+  .suggestion-component {
+    position: relative;
+    height: 235px;
+    padding: 0;
+  }
+
+  .suggestion-component:hover {
+    padding: 0;
+  }
+
+  .upvote {
+    position: absolute;
+    top: 167px;
+    left: 0;
+    width: 70px;
+    height: 40px;
+    flex-direction: row;
+  }
+  .tit-desc-cat {
+    position: absolute;
+    height: 120px;
+    top: 20px;
+    left: 0;
+  }
+  .comments-n-num {
+    position: absolute;
+    top: 170px;
+    right: 0;
+  }
+
+  #comment-bot {
+    position: absolute;
+    top: 50px;
+    left: 0;
+  }
+
+  .comment-container {
+    padding-bottom: 100px;
+    height: 100px;
+    padding-left: 50px;
+  }
+
+  #add-com-bot input {
+    width: 118px;
+  }
+}
