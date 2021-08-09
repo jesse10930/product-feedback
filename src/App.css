@@ -374,7 +374,7 @@ body {
 
   .suggestion-component {
     position: relative;
-    height: 235px;
+    height: 255px;
     padding: 0;
   }
 
@@ -382,9 +382,14 @@ body {
     padding: 0;
   }
 
+  .suggestion-component > * {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
   .upvote {
     position: absolute;
-    top: 167px;
+    top: 195px;
     left: 0;
     width: 70px;
     height: 40px;
@@ -392,26 +397,32 @@ body {
   }
   .tit-desc-cat {
     position: absolute;
-    height: 120px;
-    top: 20px;
+    height: 150px;
+    top: 15px;
     left: 0;
   }
   .comments-n-num {
     position: absolute;
-    top: 170px;
+    top: 210px;
     right: 0;
   }
 
-  #comment-bot {
-    position: absolute;
-    top: 50px;
-    left: 0;
+  .comment-container {
+    padding-left: 0px;
   }
 
-  .comment-container {
-    padding-bottom: 100px;
-    height: 100px;
-    padding-left: 50px;
+  .comment-top {
+    padding-left: 45px;
+  }
+
+  .reply-container {
+    padding-left: 0px;
+  }
+
+  .grey-line {
+    left: -15px;
+    top: 0;
+    height: calc(100% - 100px);
   }
 
   #add-com-bot input {

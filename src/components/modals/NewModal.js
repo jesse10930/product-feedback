@@ -42,12 +42,12 @@ const NewModal = ({ onGoBackClick }) => {
 
   // On title change
   const onTitleChange = (e) => {
-    setFeedbackTitle(e.target.value);
+    setFeedbackTitle(e.target.value.substring(0, 50));
   };
 
   // On details change
   const onDetailChange = (e) => {
-    setFeedbackDetail(e.target.value);
+    setFeedbackDetail(e.target.value.substring(0, 150));
   };
 
   // On cancel click

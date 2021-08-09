@@ -53,6 +53,13 @@ const CommentsHeader = ({ count, category, reqObj, updateUpvote }) => {
     setShowModal(false);
   };
 
+  // Save Changes on edit modal click
+  // const onSaveClick = () => {
+  //   let htmlDiv = document.getElementsByTagName('HTML')[0];
+  //   htmlDiv.style.overflow = 'scroll';
+  //   setShowModal(false);
+  // }
+
   // Capitalize status
   const capStatus =
     reqObj.status === 'in-progress'

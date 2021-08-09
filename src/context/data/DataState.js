@@ -285,6 +285,7 @@ const DataState = (props) => {
   ) => {
     // Declare current requests array
     let curRequests = state.requests;
+    let reqIndex;
 
     // Loop through array to find active request, and update
     for (let i = 0; i < curRequests.length; i++) {
@@ -293,9 +294,13 @@ const DataState = (props) => {
         curRequests[i].category = newCategory.toLowerCase();
         curRequests[i].status = newStatus.toLowerCase();
         curRequests[i].description = newDescription;
+        reqIndex = i;
         break;
       }
     }
+
+    // Edit active request
+    setActiveRequest(curRequests[reqIndex], true);
 
     // Store new requests array in session storage and declare as JSON obj
     sessionStorage.setItem('requests', JSON.stringify(curRequests));
