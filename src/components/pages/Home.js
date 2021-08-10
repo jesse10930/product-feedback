@@ -3,6 +3,7 @@ import Sidebar from '../home_layouts/Sidebar';
 import HomeContainer from '../home_layouts/HomeContainer';
 import CommentsComponent from '../comments/CommentsComponent';
 import DataContext from '../../context/data/dataContext';
+import MobileHeader from '../mobile/MobileHeader';
 
 const Home = () => {
   // Declare and destructure context
@@ -19,6 +20,7 @@ const Home = () => {
     <Fragment>
       {!suggClicked ? (
         <div id='sidebar-sugg-layout'>
+          <MobileHeader />
           <Sidebar />
           <HomeContainer />
         </div>
