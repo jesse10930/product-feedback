@@ -279,7 +279,7 @@ const EditModal = ({
           >
             Can't leave any fields empty
           </p>
-          <div className='modal-footer'>
+          <div className='modal-footer-edit'>
             <button
               className='btn4 header4 modal-delete'
               onClick={onDeleteClick}

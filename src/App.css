@@ -451,12 +451,42 @@ body {
   .modal-container {
     padding-top: 0;
     width: 100vw;
+    height: 140vh;
+  }
+
+  .modal-content {
+    height: 115vh;
   }
 
   .modal-body {
     width: 65%;
     margin-left: auto;
     margin-right: auto;
+    height: 100%;
+  }
+
+  .modal-footer {
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+  }
+
+  .modal-footer-edit {
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center;
+    height: 150px;
+  }
+
+  .modal-footer > * {
+    width: 100%;
+    margin: 0;
+  }
+
+  .modal-footer-edit > * {
+    width: 100%;
+    margin: 0;
   }
 
   /* Mobile Header */

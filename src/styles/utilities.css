@@ -816,6 +816,11 @@
   justify-content: flex-end;
 }
 
+.modal-footer-edit {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .modal-delete {
   width: 93px;
   margin-right: auto;

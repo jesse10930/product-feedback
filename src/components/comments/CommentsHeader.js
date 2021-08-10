@@ -41,14 +41,27 @@ const CommentsHeader = ({ count, category, reqObj, updateUpvote }) => {
 
   // On add feedback button click
   const onEditFeedbackClick = () => {
+    console.log(window.innerWidth);
     let htmlDiv = document.getElementsByTagName('HTML')[0];
-    htmlDiv.style.overflow = 'hidden';
+    let comsContElem = document.getElementById('coms-cont');
+    let addComContElem = document.getElementById('add-com-cont');
+
+    if (window.innerWidth < 400) {
+      comsContElem.classList.toggle('hide');
+      addComContElem.classList.toggle('hide');
+    } else {
+      htmlDiv.style.overflow = 'hidden';
+    }
     setShowModal(true);
   };
 
   // On modal go back click
   const onGoBackClick = () => {
     let htmlDiv = document.getElementsByTagName('HTML')[0];
+    let comsContElem = document.getElementById('coms-cont');
+    let addComContElem = document.getElementById('add-com-cont');
+    comsContElem.classList.toggle('hide');
+    addComContElem.classList.toggle('hide');
     htmlDiv.style.overflow = 'scroll';
     setShowModal(false);
   };
