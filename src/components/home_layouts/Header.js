@@ -44,15 +44,19 @@ const Header = () => {
 
   // On add feedback button click
   const onAddFeedbackClick = () => {
-    let htmlDiv = document.getElementsByTagName('HTML')[0];
-    htmlDiv.style.overflow = 'hidden';
+    // let htmlDiv = document.getElementsByTagName('HTML')[0];
+    // htmlDiv.style.overflow = 'hidden';
+    let allSuggsElem = document.getElementById('all-suggs');
+    allSuggsElem.classList.toggle('hide');
     setShowModal(true);
   };
 
   // On modal go back click
   const onGoBackClick = () => {
-    let htmlDiv = document.getElementsByTagName('HTML')[0];
-    htmlDiv.style.overflow = 'scroll';
+    // let htmlDiv = document.getElementsByTagName('HTML')[0];
+    // htmlDiv.style.overflow = 'scroll';
+    let allSuggsElem = document.getElementById('all-suggs');
+    allSuggsElem.classList.toggle('hide');
     setShowModal(false);
   };
 
