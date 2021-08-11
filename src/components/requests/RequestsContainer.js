@@ -29,7 +29,17 @@ const RequestsContainer = ({ plannedArr, inProgressArr, liveArr }) => {
         key={Math.floor(Math.random() * 1000)}
       ></div>
     ) : (
-      <div className='req-cards-container' key={i}>
+      <div
+        id={'req-cards-cont-' + i}
+        key={i}
+        className={
+          window.innerWidth > 400
+            ? 'req-cards-container'
+            : i === 0
+            ? 'req-cards-container'
+            : 'req-cards-container hide'
+        }
+      >
         <div className='req-cards-title'>
           <h3 className='title-bold header3'>
             {reqArrs[0].length > 0
