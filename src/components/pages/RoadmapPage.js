@@ -3,6 +3,7 @@ import RoadmapHeader from '../roadmap_layouts/RoadmapHeader';
 import RoadmapRequests from '../roadmap_layouts/RoadmapRequests';
 import CommentsComponent from '../comments/CommentsComponent';
 import DataContext from '../../context/data/dataContext';
+import MobileRoadmapDisplay from '../mobile/MobileRoadmapDisplay';
 
 const RoadmapPage = () => {
   // Declare and destructure context
@@ -12,6 +13,8 @@ const RoadmapPage = () => {
   // Effect to get data on initial load
   useEffect(() => {
     getData();
+    const htmlDiv = document.getElementsByTagName('HTML')[0];
+    htmlDiv.style.overflow = 'scroll';
     // eslint-disable-next-line
   }, []);
 
@@ -20,6 +23,7 @@ const RoadmapPage = () => {
       {!suggClicked ? (
         <div id='roadmap-page'>
           <RoadmapHeader />
+          <MobileRoadmapDisplay />
           <RoadmapRequests />
         </div>
       ) : (

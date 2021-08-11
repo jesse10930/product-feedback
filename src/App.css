@@ -266,6 +266,10 @@ body {
   color: var(--grey);
 }
 
+#mob-reqs-disp {
+  display: none;
+}
+
 /* Tablet Media Queries */
 @media (max-width: 800px) {
   html {
@@ -550,5 +554,75 @@ body {
 
   #roadmap-container {
     width: 70%;
+  }
+
+  #roadmap-header {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100px;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  #roadmap-header > button {
+    width: 135px;
+    margin-right: 24px;
+  }
+
+  #rm-head-left > h1 {
+    font-size: 20px;
+    line-height: 29px;
+    letter-spacing: -0.25;
+    font-weight: bold;
+    margin-left: 24px;
+  }
+
+  #mob-reqs-disp {
+    position: absolute;
+    display: flex;
+    top: 100px;
+    left: 0;
+    height: 70px;
+    width: 100vw;
+    border-bottom: 1px solid var(--grey);
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .mob-reqs-disp-opt {
+    color: var(--grey);
+    font-weight: bold;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+  }
+
+  .active-display-title {
+    color: var(--dk-blue);
+  }
+
+  #mob-reqs-disp-planned.active-display-title {
+    border-bottom: 4px solid var(--orange);
+  }
+
+  #mob-reqs-disp-inprogress.active-display-title {
+    border-bottom: 4px solid var(--purple);
+  }
+
+  #mob-reqs-disp-live.active-display-title {
+    border-bottom: 4px solid var(--sky-blue);
+  }
+
+  #roadmap-reqs {
+    margin-top: 100px;
+  }
+
+  .req-cards-container {
+    width: auto;
   }
 }
