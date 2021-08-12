@@ -41,14 +41,11 @@ const CommentsHeader = ({ count, category, reqObj, updateUpvote }) => {
 
   // On add feedback button click
   const onEditFeedbackClick = () => {
-    console.log(window.innerWidth);
     let htmlDiv = document.getElementsByTagName('HTML')[0];
     let comsContElem = document.getElementById('coms-cont');
-    let addComContElem = document.getElementById('add-com-cont');
 
     if (window.innerWidth < 400) {
-      comsContElem.classList.toggle('hide');
-      addComContElem.classList.toggle('hide');
+      comsContElem.style.display = 'none';
     } else {
       htmlDiv.style.overflow = 'hidden';
     }
@@ -59,9 +56,7 @@ const CommentsHeader = ({ count, category, reqObj, updateUpvote }) => {
   const onGoBackClick = () => {
     let htmlDiv = document.getElementsByTagName('HTML')[0];
     let comsContElem = document.getElementById('coms-cont');
-    let addComContElem = document.getElementById('add-com-cont');
-    comsContElem.classList.toggle('hide');
-    addComContElem.classList.toggle('hide');
+    comsContElem.style.display = 'flex';
     htmlDiv.style.overflow = 'scroll';
     setShowModal(false);
   };
